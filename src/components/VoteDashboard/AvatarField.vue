@@ -1,11 +1,14 @@
 <template>
-        <div class="table">
+    <div class="participant__image">
+          <img class="pictures" :src="require(`../assets/${item.img}.png` )"/>  
+    </div>    
+        <!-- <div class="table">
             <div class="row" v-for="item in participants" :key="item.id">
                 <div class="cell">
-                    <img class="pictures" :src="require(`../assets/${item.img}.png` )"/>
+                    
                 </div>
             </div>
-        </div>
+        </div> -->
 </template>
 
 
@@ -27,11 +30,11 @@ export default {
 <style scoped>
 
 .pictures{
-    height: 70px;
+    height: 90px;
 }
 .table {
     display:table; 
-    background:#f3eff2;
+    
     } 
     .row{
     display:table-row;
