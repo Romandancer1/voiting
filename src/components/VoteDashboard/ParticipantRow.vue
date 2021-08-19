@@ -1,11 +1,14 @@
 <template>
-   <avatar-field></avatar-field>
+<div>
+   <avatar-fields></avatar-fields>
+</div>
 </template>
 
 <script>
-import AvatarField from '../AvatarField.vue'
+import AvatarFields from '@/components/VoteDashboard/Asas/AvatarFields.vue'
 
 export default{
-  components: { AvatarField },
+  components: { AvatarFields },
+
 }
 </script>

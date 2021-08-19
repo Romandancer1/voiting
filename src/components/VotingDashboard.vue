@@ -3,10 +3,10 @@
     <div class = container>
         <ParticipantRow v-for="item in participants" :key="item.id"/>
 
-         <!-- <AvatarField 
+          <AvatarField 
             v-bind:participants = "participants"
             v-bind:item = "item"
-        /> -->
+        /> 
         <!-- <div class="table">
             <div class="row"  v-for="item in participants" :key="item.id">
                 <div class="cell">
@@ -33,12 +33,13 @@
 
 <script>
 import ParticipantRow from '@/components/VoteDashboard/ParticipantRow'
-// import AvatarField from  '@/components/AvatarField'
+ import AvatarField from  '@/components/AvatarField'
 // import ParticipantEvaluationField from  '@/components/ParticipantEvaluationField'
 // import ParticipantInfoField from  '@/components/ParticipantInfoField'
 export default {
     components: {
-        ParticipantRow
+        ParticipantRow,
+        AvatarField
     },
     props:['participants'],
 }
