@@ -1,10 +1,11 @@
 <template>
 <div class="title">
-    <select class="sel" >
-    <option>A</option>
-    <option>Б</option>
-    <option>В</option>
+    <select class="sel"  @change="onChange($event)">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
     </select>
+
 </div>
 
 </template>
@@ -13,17 +14,18 @@
 
 export default{
     props:{
-        options:{
-            type: Array,
-            default(){
-                return[]
-            }
-        },
         selected:{
             type: String,
             default:''
-        }
+        },
     },
+    methods:{
+        onChange: function(event){
+
+            console.log(event.target.value)
+            return event.target.value
+        }
+    }
    
 }
 </script>

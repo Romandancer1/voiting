@@ -1,15 +1,29 @@
+
 <template>
-<div>
-   <avatar-fields></avatar-fields>
-   1232121215215122512551
+<div class="container">
+   <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
+   <participant-info-field :item="rowData"></participant-info-field>
+   <participant-evaluation-field :item="rowData"></participant-evaluation-field>
 </div>
 </template>
 
 <script>
-import AvatarFields from '@/components/VoteDashboard/Asas/AvatarFields.vue'
-
+import AvatarFields from '@/components/VoteDashboard/ParticipantRow/AvatarFields.vue'
+import ParticipantEvaluationField from "./ParticipantRow/ParticipantEvaluationField";
+import ParticipantInfoField from "./ParticipantRow/ParticipantInfoField";
 export default{
-  components: { AvatarFields },
-
+  props: ['rowData'],
+  components: {
+    AvatarFields,
+    ParticipantEvaluationField,
+    ParticipantInfoField
+  },
 }
 </script>
+
+<style scoped>
+ .container {
+  display: flex;
+  flex-direction: row;
+  }
+</style>
