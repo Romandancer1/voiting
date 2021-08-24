@@ -14,7 +14,7 @@
 
 <script>
 import VotingDashboard from './components/VotingDashboard.vue'
-import DropListRound from './components/DropListRound.vue'
+import DropListRound from './components/UI/DropListRound.vue'
 export default {
   name: 'App',
     data(){
@@ -27,18 +27,18 @@ export default {
         {id: 5, name: 'ФИО5', tb: 'ТБ5', post: 'Должность5', department: 'Отдел5', img: "avatar",  completed: false,score:0}
       ],
        participants2:[
-        {id: 1, name: 'team 2', tb: 'ТБ', post: 'Писатель', department: 'Литературы',img: "avatar",  completed: false,score:1},
-        {id: 2, name: 'ФИО2', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:1},
-        {id: 3, name: 'ФИО3', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:1},
-        {id: 4, name: 'ФИО4', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:1},
-        {id: 5, name: 'ФИО5', tb: 'ТБ5', post: 'Должность5', department: 'Отдел5', img: "avatar",  completed: false,score:1}
+        {id: 1, name: 'team 2', tb: 'ТБ', post: 'Писатель', department: 'Литературы',img: "avatar",  completed: false,score:0},
+        {id: 2, name: 'ФИО2', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
+        {id: 3, name: 'ФИО3', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
+        {id: 4, name: 'ФИО4', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
+        {id: 5, name: 'ФИО5', tb: 'ТБ5', post: 'Должность5', department: 'Отдел5', img: "avatar",  completed: false,score:0}
       ],
        participants3:[
         {id: 1, name: 'team 3', tb: 'ТБ', post: 'Писатель', department: 'Литературы',img: "avatar",  completed: false,score:0},
-        {id: 2, name: 'ФИО2', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:1},
+        {id: 2, name: 'ФИО2', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
         {id: 3, name: 'ФИО3', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
-        {id: 4, name: 'ФИО4', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:1},
-        {id: 5, name: 'ФИО5', tb: 'ТБ5', post: 'Должность5', department: 'Отдел5', img: "avatar",  completed: false,score:1}
+        {id: 4, name: 'ФИО4', tb: 'ТБ', post: 'Должность', department: 'Отдел', img: "avatar",  completed: false,score:0},
+        {id: 5, name: 'ФИО5', tb: 'ТБ5', post: 'Должность5', department: 'Отдел5', img: "avatar",  completed: false,score:0}
       ],
       newParticipants:{},
       returnTab: '1',
