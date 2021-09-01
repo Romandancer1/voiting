@@ -1,10 +1,19 @@
 <template>
-    <div class="voting_container">
+  <div class="voting">
+     <div class="voting__container">
       <div class="round-select__wrapper">
           <button class="round-select__button" v-on:click="loadRound(1)">Раунд 1</button>
           <button class="round-select__button" v-on:click="loadRound(2)">Раунд 2</button>
           <button class="round-select__button" v-on:click="loadRound(3)">Раунд 3</button>
       </div>
+      <spinner v-if="participantDataLoaded"></spinner>
+      <participant-table v-else
+                         v-bind:participants=participantList>
+       </participant-table>
+
+
+  </div>
+
 <!--      <div class="round-table__name">-->
 
 <!--      </div>-->
@@ -17,20 +26,28 @@
 <!--    </div>-->
 
 
-<!--        <ParticipantRow v-for="item in participants"-->
-<!--                        :key="item.id"-->
-<!--                        :rowData="item"-->
-<!--        />-->
+
     </div>
 </template>
 
 <script>
-// import ParticipantRow from '@/components/VoteDashboard/ParticipantRow'
+
+import Spinner from 'vue-simple-spinner';
+import ParticipantTable from "@/components/VoteDashboard/ParticipantTable";
+import {mapState} from "vuex";
+
 export default {
-    // components: {
-    //     ParticipantRow
-    // },
-    // props:['participants'],
+    components: {
+        Spinner,
+        ParticipantTable
+    },
+    mounted() {
+       this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: 1})
+    },
+    computed: mapState({
+      participantList: state => state.VotingData.participantList,
+      participantDataLoaded: state => state.VotingData.participantDataLoaded
+    }),
 }
 </script>
 

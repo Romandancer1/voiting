@@ -13,12 +13,24 @@
     //padding: 10px 10px;
     //margin: 0 auto;
 }
-
-.voting_container {
+.voting {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
+}
+
+.voting__container {
+
+
+}
+
+.voting__content {
+
+}
+
+.round-select__wrapper {
+    margin-bottom: 30px;
 }
 
 .round-select__button{
