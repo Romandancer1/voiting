@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <div>
-      <DropListRound/>
-    </div>
-    <div class="tab" >
-      <button class="tab-button" @click="newParticipants=participants1.slice()">Стол 1</button>
-      <button class="tab-button" @click="newParticipants=participants2.slice()">Стол 2</button>
-      <button class="tab-button" @click="newParticipants=participants3.slice()">Стол 3</button>
-      <VotingDashboard :participants="newParticipants"/>
-    </div>
+    <router-view></router-view>
+<!--    <div>-->
+<!--      <DropListRound/>-->
+<!--    </div>-->
+<!--    <div class="tab" >-->
+<!--      <button class="tab-button" @click="newParticipants=participants1.slice()">Стол 1</button>-->
+<!--      <button class="tab-button" @click="newParticipants=participants2.slice()">Стол 2</button>-->
+<!--      <button class="tab-button" @click="newParticipants=participants3.slice()">Стол 3</button>-->
+<!--      <VotingDashboard :participants="newParticipants"/>-->
+<!--    </div>-->
   </div>
 </template>
 
 <script>
-import VotingDashboard from './components/VotingDashboard.vue'
-import DropListRound from './components/UI/DropListRound.vue'
+// import VotingDashboard from './components/VotingDashboard.vue'
+// import DropListRound from './components/UI/DropListRound.vue'
+// import AvatarField from "./components/UI/AvatarField";
 export default {
   name: 'App',
     data(){
@@ -46,8 +48,9 @@ export default {
     }
   },
   components: {
-    VotingDashboard,
-    DropListRound
+    // AvatarField,
+    // VotingDashboard,
+    // DropListRound
   }, 
 
   methods: {
@@ -59,15 +62,12 @@ export default {
 }
 </script>
 
+<style lang="scss">
+  @import "styles/style.scss";
+</style>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 40px;
-}
+
 button{
 
   margin: 0 100px 0 100px;
