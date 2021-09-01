@@ -1,0 +1,27 @@
+.round-select__wrapper {
+    display: flex;
+    max-width: 300px;
+}
+
+.container {
+    //display: flex;
+    //flex-direction: row;
+    //flex-wrap:  wrap;
+    //justify-content: space-around;
+    //width: 100%;
+    //max-width: 1024px;
+    //padding: 10px 10px;
+    //margin: 0 auto;
+}
+
+.voting_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.round-select__button{
+    max-height: 50px;
+    margin-right: 10px;
+}

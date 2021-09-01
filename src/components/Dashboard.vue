@@ -1,7 +1,6 @@
 <template>
     <div class="sim">
-          главная
-
+        <router-link to="/voting">Перейти к оценке участников</router-link>
     </div>
 </template>
 

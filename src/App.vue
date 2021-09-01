@@ -1,15 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-<!--    <div>-->
-<!--      <DropListRound/>-->
-<!--    </div>-->
-<!--    <div class="tab" >-->
-<!--      <button class="tab-button" @click="newParticipants=participants1.slice()">Стол 1</button>-->
-<!--      <button class="tab-button" @click="newParticipants=participants2.slice()">Стол 2</button>-->
-<!--      <button class="tab-button" @click="newParticipants=participants3.slice()">Стол 3</button>-->
-<!--      <VotingDashboard :participants="newParticipants"/>-->
-<!--    </div>-->
+      <router-view></router-view>
   </div>
 </template>
 
@@ -70,16 +61,16 @@ export default {
 
 button{
 
-  margin: 0 100px 0 100px;
-  background-color: #ffffff; 
-  border: solid 1px rgb(151, 151, 151);
-  border-radius: 10px;
-  color: rgb(29, 29, 29);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  /*margin: 0 100px 0 100px;*/
+  /*background-color: #ffffff; */
+  /*border: solid 1px rgb(151, 151, 151);*/
+  /*border-radius: 10px;*/
+  /*color: rgb(29, 29, 29);*/
+  /*padding: 15px 32px;*/
+  /*text-align: center;*/
+  /*text-decoration: none;*/
+  /*display: inline-block;*/
+  /*font-size: 16px;*/
 }
 
 .tab-button {

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Authorize from "./components/Authorize";
 import Dashboard from "./components/Dashboard";
-// import VotingDashboard from "./components/VotingDashboard";
+import VotingDashboard from "./components/VotingDashboard";
 import AdminPage from "./components/AdminPage";
 import Login from "./components/authorize/Login";
 import Register from "./components/authorize/Register";
@@ -41,6 +41,14 @@ export const router = new Router({
             {
              path: '/admin-page',
              component: AdminPage,
+            },
+            {
+             path: '/',
+             component: Dashboard
+            },
+            {
+             path: '/voting',
+             component: VotingDashboard
             }
 
         //     path: '/voting',
