@@ -90,7 +90,7 @@ export default {
          this.$store.dispatch('auth/login', this.user)
           .then(() => {
               if (this.isLoggedIn) {
-                this.$router.push('/Home');
+                this.$router.push('/voting');
               } else {
                 this.isLoginFailed = true;
                 if(this.loginFailureStatus === 401) {
