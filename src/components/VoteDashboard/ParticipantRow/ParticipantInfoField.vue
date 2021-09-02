@@ -1,11 +1,11 @@
 <template>
-<div >
-    <div >
-        <div><strong>{{item.name}}</strong></div>
-        <div>{{item.tb}}</div>
-        <div>{{item.post}} </div>
-        <div>{{item.department}}</div>
-    </div>  
+    <div class="voting__row-participant-info">
+
+        <p><strong>{{item.name}}</strong></p>
+        <p>{{item.tb}}</p>
+        <p>{{item.post}} </p>
+        <p>{{item.department}}</p>
+
     </div>  
 </template>
 

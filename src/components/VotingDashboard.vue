@@ -11,7 +11,6 @@
                          v-bind:participants=participantList>
        </participant-table>
 
-
   </div>
 
 <!--      <div class="round-table__name">-->
@@ -48,6 +47,11 @@ export default {
       participantList: state => state.VotingData.participantList,
       participantDataLoaded: state => state.VotingData.participantDataLoaded
     }),
+    methods: {
+      loadRound(roundID) {
+         this.$store.dispatch('VotingData/getParticipants', {roundID: roundID, judgeID: 1})
+      }
+    }
 }
 </script>
 

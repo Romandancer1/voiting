@@ -1,18 +1,30 @@
 <template>
     <div class="admin">
+        <div v-for="item in roundData.rounds"
+                    :key="item.id"
+                    :rowData="item"
+        >
+          <span>Раунд {{item.id}}</span>
+          <button :disabled="item.is_finished"
+              v-on:click="finishRound(1)">
+                  Завершить раунд
+          </button>
+        </div>
+<!--            -->
+<!--            <button v-on:click="finishRound(1)">Завершить раунд</button>-->
 
-        <div class="admin-round__wrapper">
-            <span>Раунд 1</span>
-            <button>Завершить раунд</button>
-        </div>
-        <div class="admin-round__wrapper">
-            <span>Раунд 1</span>
-            <button>Завершить раунд</button>
-        </div>
-        <div class="admin-round__wrapper">
-            <span>Раунд 1</span>
-            <button>Завершить раунд</button>
-        </div>
+<!--        <div class="admin-round__wrapper">-->
+<!--            <span>Раунд 1</span>-->
+<!--            <button v-on:click="finishRound(1)">Завершить раунд</button>-->
+<!--        </div>-->
+<!--        <div class="admin-round__wrapper">-->
+<!--            <span>Раунд 2</span>-->
+<!--            <button v-on:click="finishRound(2)">Завершить раунд</button>-->
+<!--        </div>-->
+<!--        <div class="admin-round__wrapper">-->
+<!--            <span>Раунд 3</span>-->
+<!--            <button v-on:click="finishRound(3)">Завершить раунд</button>-->
+<!--        </div>-->
         <button class="admin__download">
             Выгрузить результаты в excel
         </button>
@@ -21,8 +33,30 @@
 </template>
 
 <script>
+import AdminSerivce from "@/service/admin.service"
+
 export default {
-name: "AdminPage"
+name: "AdminPage",
+  data() {
+      return {
+          roundData: []
+    }
+  },
+  beforeMount() {
+      this.updateRounds()
+  },
+  methods: {
+      finishRound(roundID) {
+        AdminSerivce.finishRound(roundID).then(response => {
+            console.log(response)
+        })
+      },
+      updateRounds() {
+         AdminSerivce.getAllRounds().then(response => {
+            this.roundData = response.data
+        })
+      }
+  }
 }
 </script>
 

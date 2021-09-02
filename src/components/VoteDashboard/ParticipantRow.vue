@@ -1,8 +1,10 @@
 
 <template>
-<div class="container">
-   <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
-   <participant-info-field :item="rowData"></participant-info-field>
+<div class="voting__row">
+  <div class="voting__row-wrapper">
+       <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
+       <participant-info-field :item="rowData"></participant-info-field>
+  </div>
    <participant-evaluation-field :item="rowData"></participant-evaluation-field>
 </div>
 </template>
@@ -22,8 +24,4 @@ export default{
 </script>
 
 <style scoped>
- .container {
-  display: flex;
-  flex-direction: row;
-  }
 </style>

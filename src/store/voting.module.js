@@ -1,7 +1,7 @@
 import VotingService from "@/service/voting.service"
 
 const InitialState = {
-    participantsList: [],
+    participantList: [],
     participantDataLoaded: false
 }
 
@@ -28,7 +28,7 @@ export const VotingData = {
     },
     getters: {
         getParticipantsData(state) {
-            return state.participantsList
+            return state.participantList
         },
         getParticipantsLoadingStatus(state) {
             return state.participantDataLoaded

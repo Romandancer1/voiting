@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'https://voting-app.newtechaudit.ru/api/voting-admin/';
+const API_URL = 'https://voting-app.newtechaudit.ru/api/rounds/';
 
 class AdminService {
     async finishRound(roundID) {
@@ -9,6 +9,10 @@ class AdminService {
                 roundID: roundID
             }
         })
+    }
+
+    async getAllRounds() {
+         return await axios.get(API_URL + 'get-all/')
     }
 
     async downloadExcel() {

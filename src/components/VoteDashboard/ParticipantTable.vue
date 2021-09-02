@@ -4,14 +4,12 @@
                         :key="item.id"
                         :rowData="item"
       />
-<!--      123-->
     </div>
 </template>
 
 <script>
 import ParticipantRow from '@/components/VoteDashboard/ParticipantRow'
 export default {
-
   name: "ParticipantTable.vue",
   props:['participants'],
   components: {
