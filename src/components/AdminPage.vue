@@ -6,25 +6,11 @@
         >
           <span>Раунд {{item.id}}</span>
           <button :disabled="item.is_finished"
-              v-on:click="finishRound(1)">
-                  Завершить раунд
+                  v-on:click="finishRound(item.id)">
+                  <span v-if="item.is_finished">Раунд завершен</span>
+                  <span v-else>Завершить раунд</span>
           </button>
         </div>
-<!--            -->
-<!--            <button v-on:click="finishRound(1)">Завершить раунд</button>-->
-
-<!--        <div class="admin-round__wrapper">-->
-<!--            <span>Раунд 1</span>-->
-<!--            <button v-on:click="finishRound(1)">Завершить раунд</button>-->
-<!--        </div>-->
-<!--        <div class="admin-round__wrapper">-->
-<!--            <span>Раунд 2</span>-->
-<!--            <button v-on:click="finishRound(2)">Завершить раунд</button>-->
-<!--        </div>-->
-<!--        <div class="admin-round__wrapper">-->
-<!--            <span>Раунд 3</span>-->
-<!--            <button v-on:click="finishRound(3)">Завершить раунд</button>-->
-<!--        </div>-->
         <button class="admin__download">
             Выгрузить результаты в excel
         </button>

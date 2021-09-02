@@ -4,11 +4,7 @@ const API_URL = 'https://voting-app.newtechaudit.ru/api/rounds/';
 
 class AdminService {
     async finishRound(roundID) {
-        return await axios.put(API_URL + 'finish/', {
-            params: {
-                roundID: roundID
-            }
-        })
+        return await axios.put(API_URL + 'finish/' + roundID)
     }
 
     async getAllRounds() {
