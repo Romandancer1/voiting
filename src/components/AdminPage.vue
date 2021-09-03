@@ -1,6 +1,6 @@
 <template>
     <div class="admin">
-        <div v-for="item in roundData.rounds"
+        <div class="admin__round" v-for="item in roundData.rounds"
                     :key="item.id"
                     :rowData="item"
         >
@@ -33,8 +33,10 @@ name: "AdminPage",
   },
   methods: {
       finishRound(roundID) {
-        AdminSerivce.finishRound(roundID).then(response => {
-            console.log(response)
+        AdminSerivce.finishRound(roundID)
+            .then(response => {
+                console.log(response)
+                this.updateRounds()
         })
       },
       updateRounds() {

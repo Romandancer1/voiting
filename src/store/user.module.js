@@ -2,8 +2,7 @@ import AuthService from "@/service/auth.service"
 
 const InitialState = {
       user: {
-         name: null,
-         surname: null,
+         name: null
       }
 }
 
@@ -12,8 +11,9 @@ export const UserData = {
     state: () => (InitialState),
     mutations: {
         getUserData(state, userData) {
-            state.user.name = userData.first_name;
-            state.user.surname = userData.last_name;
+            state.user.email = userData.judge.email;
+            state.user.name = userData.judge.name;
+            state.user.id = userData.judge.id
         }
 
     },

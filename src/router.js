@@ -5,8 +5,8 @@ import Dashboard from "./components/Dashboard";
 import VotingDashboard from "./components/VotingDashboard";
 import AdminPage from "./components/AdminPage";
 import Login from "./components/authorize/Login";
-import Register from "./components/authorize/Register";
-import Verify from "./components/authorize/Verify";
+// import Register from "./components/authorize/Register";
+// import Verify from "./components/authorize/Verify";
 
 Vue.use(Router);
 
@@ -19,18 +19,18 @@ export const router = new Router({
                 path: '/login',
                 name: 'login',
                 component: Login
-            },
-            {
-                path: '/register',
-                name: 'register',
-                component: Register
-            },
-                {
-
-                path: '/signup/verify/',
-                name: 'verifyEmail',
-                component: Verify
             }
+            // {
+            //     path: '/register',
+            //     name: 'register',
+            //     component: Register
+            // },
+            //     {
+            //
+            //     path: '/signup/verify/',
+            //     name: 'verifyEmail',
+            //     component: Verify
+            // }
             ]
         },
 
@@ -63,9 +63,9 @@ export const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/remember', '/signup/verify/', '/password/reset/verify/', '/notfound'];
+  const publicPages = ['/login', '/dashboard', '/notfound'];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = localStorage.getItem('voting_app_user');
 
   // trying to access a restricted page + not logged in
   // redirect to login page

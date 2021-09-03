@@ -1,0 +1,22 @@
+.admin__round {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.admin__round span {
+    color: black;
+}
+.admin__round button {
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.admin__download {
+    padding: 10px;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+}

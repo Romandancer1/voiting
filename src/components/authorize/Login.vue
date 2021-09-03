@@ -16,12 +16,12 @@
 <!--            >-->
 
 <!--            <p class="authorization__input&#45;&#45;error-message" v-if="!$v.user.email.email">Вы ввели невалидный email</p>-->
-           <label for="userPassword">Пароль</label>
-           <input v-model="user.password"
-                 type="password"
-                 id="userPassword"
-                 class="authorization__input login__user-password"
-                 required />
+<!--           <label for="userPassword">Пароль</label>-->
+<!--           <input v-model="user.password"-->
+<!--                 type="password"-->
+<!--                 id="userPassword"-->
+<!--                 class="authorization__input login__user-password"-->
+<!--                 required />-->
 
         </div>
         <button v-on:click="login" class="login__submit">
@@ -38,10 +38,10 @@
 
       </form>
 
-      <div class="authorization__footer authorization__footer--justify-space">
-        <span class="authorization__footer-text">Нет аккаунта? </span>
-        <router-link to="/register" class="authorization__footer-link">Зарегистрироваться</router-link>
-      </div>
+<!--      <div class="authorization__footer authorization__footer&#45;&#45;justify-space">-->
+<!--        <span class="authorization__footer-text">Нет аккаунта? </span>-->
+<!--        <router-link to="/register" class="authorization__footer-link">Зарегистрироваться</router-link>-->
+<!--      </div>-->
     </div>
   </div>
 
@@ -73,7 +73,7 @@ export default {
   }),
   created() {
     if (this.isLoggedIn) {
-      this.$router.push('/Home');
+      this.$router.push('/voting');
     }
   },
   validations: {
@@ -90,7 +90,7 @@ export default {
          this.$store.dispatch('auth/login', this.user)
           .then(() => {
               if (this.isLoggedIn) {
-                this.$router.push('/Home');
+                this.$router.push('/voting');
               } else {
                 this.isLoginFailed = true;
                 if(this.loginFailureStatus === 401) {
