@@ -6,13 +6,15 @@ body {
          rgba(228,228,228,0.1984943635657388) 33%,
          rgba(241,255,252,0.1760853999803046) 63%,
          rgba(0,212,255,0.6696428571428572) 100%);
+  //background-size: cover;
 }
 
 #app {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   //font-family: Avenir, Helvetica, Arial, sans-serif;
   //-webkit-font-smoothing: antialiased;
   //-moz-osx-font-smoothing: grayscale;
@@ -28,4 +30,8 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.finished_voting {
+  color: red;
+  max-width: 200px;
 }

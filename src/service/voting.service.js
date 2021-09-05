@@ -12,6 +12,10 @@ class VotingService {
               }
           })
     }
+
+    async saveParticipantScore(data) {
+        return axios.put(API_URL + 'save-score/', data)
+    }
 }
 
 export default new VotingService();
