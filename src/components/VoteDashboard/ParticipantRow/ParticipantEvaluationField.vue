@@ -2,41 +2,26 @@
         <div class="voting__row-participant-score">
             <div class="voting__row-participant-score-item">
                 Управление результатом/ответственность
-                 <select class="voting__select"
-                    v-model="user_selected_option.sortOption" 
-                    @change="retotal">
-                        <option  value="" selected>Выберите значение</option>
-                        <option 
-                            v-for="(srt, key) in sortOp" :key="key"
-                            :value="key">
-                            {{srt.scr.toFixed(2) }}
-                        </option>
+                 <select :disabled="roundID.is_finished" class="voting__select"
+                    v-model="user_selected_option.resultManagment"
+                    @change="updateScore">
+                        <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
                 </select>
             </div>
             <div class="voting__row-participant-score-item">
                 Управление собой
-                <select class="voting__select"
-                    v-model="user_selected_option.mngYOption" 
-                    @change="retotal">
-                        <option  value="" selected>Выберите значение</option>
-                        <option 
-                            v-for="(srt, key) in mngYOp" :key="key"
-                            :value="key">
-                            {{srt.scr.toFixed(2) }}
-                        </option>
+                <select :disabled="roundID.is_finished" class="voting__select"
+                    v-model="user_selected_option.selfManagment"
+                    @change="updateScore">
+                        <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
                 </select>
             </div>
             <div class="voting__row-participant-score-item">
                 Клиентоцентричность
-                <select class="voting__select"
-                    v-model="user_selected_option.custOption" 
-                    @change="retotal">
-                        <option  value="" selected>Выберите значение</option>
-                        <option 
-                            v-for="(srt, key) in custOp" :key="key"
-                            :value="key">
-                            {{srt.scr.toFixed(2) }}
-                        </option>
+                <select :disabled="roundID.is_finished" class="voting__select"
+                    v-model="user_selected_option.clientCentricity"
+                    @change="updateScore">
+                        <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
                 </select>
             
             </div>
@@ -44,47 +29,40 @@
 </template>
 
 <script>
+
+import Participant from "@/models/participant";
+import VotingService from "@/service/voting.service";
+import {mapState} from "vuex";
+
 export default {
-    props:['item'],
+    props:['item', 'judgeID', 'roundID'],
     data(){
         return{
-            total: 0,
-            user_selected_option:{
-                sortOption: '',
-                mngYOption: '',
-                custOption: ''
-            },
-            sortOp:{
-                sort_1: {sortOption:'1',scr: 1},
-                sort_2: {sortOption:'2',scr: 2},
-            },
-            mngYOp:{
-                mng_1: {mngYOption:'1',scr: 1},
-                mng_2: {mngYOption:'2',scr: 1.5},
-            },
-            custOp:{
-                cust_1: {custOption:'1',scr: 1},
-                cust_2: {custOption:'2',scr: 1.2},
-            }
+            user_selected_option: new Participant(this.roundID.id, this.judgeID, this.item),
         }
     },
+     computed: {
+      ...mapState ({
+          userData: state => state.UserData.user,
+        })
+    },
     methods:{
-        retotal: function() {
-            let newTotal = 0;
-            // if(this.user_selected_option.sortOption) {
-            //     newTotal = newTotal + this.sortOp[this.user_selected_option.sortOption].scr;
-            // }
-            // if(this.user_selected_option.mngYOption != '') {
-            //     newTotal = newTotal + this.mngYOp[this.user_selected_option.mngYOption].scr;
-            // }
-            // if(this.user_selected_option.custOption != '') {
-            // newTotal = newTotal + this.custOp[this.user_selected_option.custOption].scr;
-            // }
-            this.total = newTotal;
-            this.item.score = this.total;
-            console.log(this.item.score)
-            }
-        }
+      getNumbers:function(start=1.5,stop=5,step = 0.5){
+        return new Array(stop / step).fill(start).map((n,i)=>(i+1)*step);
+      },
+      updateScore() {
+        VotingService.saveParticipantScore({
+          roundID: this.user_selected_option.roundID,
+          judgeID: this.user_selected_option.judgeID,
+          participantID: this.user_selected_option.participantID,
+          result_management: this.user_selected_option.resultManagment,
+          self_management: this.user_selected_option.selfManagment,
+          client_centricity: this.user_selected_option.clientCentricity
+        }).then(
+            this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
+        )
+      }
+    }
 }
 </script>
 

@@ -44,7 +44,7 @@ export const router = new Router({
             },
             {
              path: '/',
-             component: Dashboard,
+             component: Dashboard
              redirect: '/dashboard'
             },
             {

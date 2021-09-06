@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'https://voting-app.newtechaudit.ru/api/dashboard/';
+const API_URL = 'http://voting-app.newtechaudit.ru/api/participants/statistics/';
 
 class DashboardService {
     async getDashboardInfo() {
