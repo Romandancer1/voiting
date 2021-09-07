@@ -12,7 +12,9 @@ class AdminService {
     }
 
     async downloadExcel() {
-        return await axios.get(API_URL + 'load-results/')
+        return await axios.get(API_URL + 'load-results/', {
+             responseType: "blob"
+        })
     }
 }
 

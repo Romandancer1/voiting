@@ -20,17 +20,6 @@ export const router = new Router({
                 name: 'login',
                 component: Login
             }
-            // {
-            //     path: '/register',
-            //     name: 'register',
-            //     component: Register
-            // },
-            //     {
-            //
-            //     path: '/signup/verify/',
-            //     name: 'verifyEmail',
-            //     component: Verify
-            // }
             ]
         },
 
@@ -44,7 +33,7 @@ export const router = new Router({
             },
             {
              path: '/',
-             component: Dashboard
+             component: Dashboard,
              redirect: '/dashboard'
             },
             {

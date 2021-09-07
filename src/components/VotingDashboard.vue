@@ -2,6 +2,9 @@
   <div class="voting">
      <spinner v-if="participantDataLoaded && userDataLoaded"></spinner>
      <div class="voting__container" v-else>
+      <div class="navigation">
+        <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
+      </div>
       <div class="voting__name">
            <span>Имя жюри: {{userData.name}}</span>
       </div>
