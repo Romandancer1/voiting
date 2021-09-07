@@ -1,30 +1,29 @@
 import axios from "axios";
 import authHeader from "@/service/auth-header";
 
-const API_URL = 'https://voting-app.newtechaudit.ru/api/accounts/';
+const API_URL = 'https://voting-app.newtechaudit.ru/api/authorize/';
 
 class AuthService {
   async login(user) {
     return await axios
-      .post(API_URL + 'login/', {
+      .post(API_URL + 'judge/', {
         email: user.email,
-        password: user.password
       })
       .then(response => {
-        if (response.data.token) {
-          localStorage.setItem('user', JSON.stringify(response.data));
+        if (response.data.judge) {
+          localStorage.setItem('voting_app_user', JSON.stringify({'email': response.data.judge.email}));
         }
         return response;
       })
       .catch(error => {
-          return error.response.status
+          return error.response
        })
   }
 
   async getUserInfo() {
     return await axios
-        .get(API_URL + 'users/me/' , {
-            headers: authHeader()
+        .post(API_URL + 'judge/' , {
+            email: authHeader().email
         })
         .then(response => {
           return response.data

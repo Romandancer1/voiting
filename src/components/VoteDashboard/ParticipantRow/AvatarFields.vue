@@ -1,6 +1,6 @@
 <template>
     <div class="participant__image">
-        <img class="pictures" :src="require(`@/assets/${participantAvatarPath}.png`)"/>
+        <img class="pictures" :src="require(`@/assets/avatar.png`)"/>
     </div>
 </template>
 

@@ -1,9 +1,11 @@
 
 <template>
-<div class="container">
-   <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
-   <participant-info-field :item="rowData"></participant-info-field>
-   <participant-evaluation-field :item="rowData"></participant-evaluation-field>
+<div class="voting__row">
+  <div class="voting__row-wrapper">
+       <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
+       <participant-info-field :item="rowData"></participant-info-field>
+  </div>
+   <participant-evaluation-field :item="rowData" :judgeID="judgeID" :roundID="roundID"></participant-evaluation-field>
 </div>
 </template>
 
@@ -11,8 +13,9 @@
 import AvatarFields from '@/components/VoteDashboard/ParticipantRow/AvatarFields.vue'
 import ParticipantEvaluationField from "./ParticipantRow/ParticipantEvaluationField";
 import ParticipantInfoField from "./ParticipantRow/ParticipantInfoField";
+
 export default{
-  props: ['rowData'],
+  props: ['rowData', 'judgeID', 'roundID'],
   components: {
     AvatarFields,
     ParticipantEvaluationField,
@@ -22,8 +25,4 @@ export default{
 </script>
 
 <style scoped>
- .container {
-  display: flex;
-  flex-direction: row;
-  }
 </style>

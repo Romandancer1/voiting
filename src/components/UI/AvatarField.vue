@@ -1,14 +1,7 @@
 <template>
     <div class="participant__image">
           <!-- <img class="pictures" :src="require(`../assets/${item}.png` )"/>   -->
-    </div>    
-        <!-- <div class="table">
-            <div class="row" v-for="item in participants" :key="item.id">
-                <div class="cell">
-                    
-                </div>
-            </div>
-        </div> -->
+    </div>
 </template>
 
 

@@ -1,0 +1,156 @@
+.round-select__wrapper {
+    display: flex;
+    max-width: 300px;
+    justify-content: center;
+}
+
+.container {
+    //display: flex;
+    //flex-direction: row;
+    //flex-wrap:  wrap;
+    //justify-content: space-around;
+    //width: 100%;
+    //max-width: 1024px;
+    //padding: 10px 10px;
+    //margin: 0 auto;
+}
+.voting {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.voting__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.voting__content {
+
+}
+.voting__name {
+    margin-bottom: 10px;
+}
+.voting__table {
+    margin-bottom: 10px;
+}
+
+.round-select__wrapper {
+    margin-right: 0px;
+    margin-bottom: 30px;
+}
+
+.round-select__button{
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+
+.voting__row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+.voting__row-wrapper {
+    display: flex;
+}
+
+.voting__row-participant-info {
+    display: flex;
+    flex-direction: column;
+}
+.voting__row-participant-score {
+
+}
+.voting__row-participant-score-item {
+
+}
+.round-select__button {
+    padding: 15px;
+    background-color: lightblue;
+    border: none;
+    text-align: center;
+}
+
+.button__active {
+    background-color: green;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+
+}
+.item {
+    //flex-basis:  auto;
+    //padding: 5px 0 0 20px;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+}
+.dashboard .barchart {
+    max-width: 300px;
+}
+
+.navigation {
+    margin-bottom: 10px;
+}
+.navigation__link {
+    padding: 5px;
+    background-color: darkgreen;
+    color: white;
+    text-decoration: none;
+}
+
+
+.voting__select {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: solid 1px rgb(184, 184, 184);
+    border-radius: .5em;
+    background-color: #fff;
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+
+}
+ .sel::-ms-expand { display: none; }
+ .sel:hover { border: solid 2px rgb(100, 100, 100);}
+
+ .sel option { font-weight:normal; }
+ *[dir="rtl"] .sel, :root:lang(ar) .sel, :root:lang(iw) .sel {
+background-position: left .7em top 50%, 0 0;
+padding: .6em .8em .5em 1.4em;
+
+}
+.title{
+    padding: 15px;
+    border-radius: 20px;
+}
+select{
+    border: none;
+    text-align: center;
+
+}
+option{
+    text-align: center;
+}

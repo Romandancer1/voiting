@@ -1,12 +1,18 @@
 <template>
-    <div class="sim">
-          главная
 
+    <div class="dashboard">
+
+           <div class="navigation" v-if="userData.name != null">
+                <router-link class="navigation__link" to="/voting">Голосование</router-link>
+           </div>
+          <participant-bar-chart></participant-bar-chart>
     </div>
 </template>
 
 <script>
 
+
+import ParticipantBarChart from "@/components/dashboard/ParticipantBarChart";
 import { mapState } from 'vuex';
 
 export default {
@@ -15,6 +21,9 @@ export default {
     ...mapState ({
         userData: state => state.UserData.user,
       })
+  },
+  components: {
+    ParticipantBarChart
   },
   created() {
     if(this.userData.name === null){
