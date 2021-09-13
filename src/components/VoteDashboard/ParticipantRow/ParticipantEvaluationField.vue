@@ -2,7 +2,8 @@
         <div class="voting__row-participant-score">
             <div class="voting__row-participant-score-item">
                 Управление результатом/ответственность
-                 <select class="voting__select" :disabled="roundID.is_finished"
+                 <select class="voting__select" 
+                    :disabled="roundID.is_finished"
                     v-model="user_selected_option.resultManagment"
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
@@ -12,7 +13,6 @@
                 Управление собой
                 <!-- :disabled="roundID.is_finished" -->
                 <select  class="voting__select" 
-                    
                     :disabled="roundID.is_finished"
                     v-model="user_selected_option.selfManagment"
                     @change="updateScore">
@@ -21,7 +21,8 @@
             </div>
             <div class="voting__row-participant-score-item">
                 Клиентоцентричность
-                <select  class="voting__select" :disabled="roundID.is_finished"
+                <select  class="voting__select" 
+                    :disabled="roundID.is_finished"
                     v-model="user_selected_option.clientCentricity"
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>

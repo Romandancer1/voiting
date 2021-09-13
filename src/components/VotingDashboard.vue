@@ -62,10 +62,6 @@ export default {
       userDataLoaded: state => state.UserData.userDataLoaded
     }),
     methods: {
-      hideButton(){
-
-      },
-     
       // closeScore(){
       //  VotingService.saveParticipantScore({
       //     is_finished: this.user_selected_option.roundID.is_finished,

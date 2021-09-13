@@ -2,11 +2,11 @@
 <template>
 <div class="voting__row">
   <div class="voting__row-wrapper">
-       <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
-       <participant-info-field :item="rowData"></participant-info-field>
+       <avatar-fields  v-show="!roundID.is_finished" :participantAvatarPath="rowData.img"></avatar-fields>
+       <participant-info-field v-show="!roundID.is_finished" :item="rowData"></participant-info-field>
   </div>
   <!-- v-show="!roundID.is_finished" -->
-   <participant-evaluation-field :item="rowData" :judgeID="judgeID" :roundID="roundID"></participant-evaluation-field>
+   <participant-evaluation-field v-show="!roundID.is_finished" :item="rowData" :judgeID="judgeID" :roundID="roundID"></participant-evaluation-field>
 </div>
 </template>
 

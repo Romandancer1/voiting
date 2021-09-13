@@ -1,9 +1,11 @@
 <template>
     <div class="admin">
+      <div>
         <div class="admin__round" v-for="item in roundData.rounds"
                     :key="item.id"
                     :rowData="item"
         >
+        
           <span>Раунд {{item.id}}</span>
           <button :disabled="item.is_finished"
                   @click="finishRound(item.id)">
@@ -14,11 +16,19 @@
         <button class="admin__download">
             Выгрузить результаты в excel
         </button>
-
-        <div v-for="item in userData" :key="item">
-          <p v-text="item"></p>
         </div>
-
+        <!-- <div v-for="it in participantList.game[0].round_id" :key="it">
+            {{it}}
+        </div>
+        <div  >
+          {{participantList}}
+        </div>
+        <div>{{roundData}}</div>
+      <div v-for="i in roundData.rounds"
+            :key="i.id">
+        <strong v-if="participantList.game[0].round_id.is_finished">{{participantList.game[0].judge_id.name}} 
+          раунд {{participantList.game[0].round_id.id}} завершил</strong>
+        </div> -->
     </div>
 </template>
 
@@ -26,11 +36,14 @@
 import AdminSerivce from "@/service/admin.service"
 import {mapState} from "vuex";
 
+
 export default {
 name: "AdminPage",
   data() {
       return {
-          roundData: []
+          hueta:[],
+          roundData: [],
+          round:1
     }
   },
   beforeMount() {
@@ -38,18 +51,18 @@ name: "AdminPage",
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
-        console.log('pidr')
+        console.log('pidr\'s')
         this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
       }
       // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
     }, 
-  computed: mapState({
+  computed:mapState({
       participantList: state => state.VotingData.participantList,
       participantDataLoaded: state => state.VotingData.participantDataLoaded,
       userData: state => state.UserData.user,
       userDataLoaded: state => state.UserData.userDataLoaded
     }),
-  methods: {
+  methods:{
       finishRound(roundID) {
         AdminSerivce.finishRound(roundID)
             .then(response => {
@@ -59,7 +72,7 @@ name: "AdminPage",
       },
       updateRounds() {
          AdminSerivce.getAllRounds().then(response => {
-            this.roundData = response.data
+            this.roundData = response.data;
         })
       }
   }

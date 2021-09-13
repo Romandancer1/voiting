@@ -18,6 +18,14 @@
             <span v-else>Завершить раунд</span>
         </button>  
       </div>
+      <!-- <div style="text-align: center">
+        <button class="round-select__button" 
+          :disabled="roundData.rounds[round-1].is_finished"
+                  @click="finishRound(roundData.rounds[round-1].id)">
+            <span v-if="roundData.rounds[round-1].is_finished">Раунд завершен</span>
+            <span v-else>Завершить раунд</span>
+        </button>  
+      </div> -->
        
     </div>
 </template>
@@ -32,19 +40,45 @@ export default {
   components: {
       ParticipantRow
   },
+   data() {
+      return {
+          roundData: []
+    }
+  },
+  beforeMount() {
+      this.updateRounds()
+      // if(this.userData.name === null){
+      //   this.$store.dispatch('UserData/loadUser')
+      // } else {
+      //   console.log('pidr')
+      //   this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
+      // }
+      // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
+    }, 
+    provide(){
+    return{
+      reload:this.reload
+    }
+  },
   methods:{
      finishRound(roundID) {
         AdminSerivce.finishRound(roundID)
             .then(response => {
                 console.log(response)
                 this.updateRounds()
+        });
+        window.location.reload();
+        // VotingService.closeParticipantScore({
+        //   roundID: this.roundData.rounds[round-1].id,
+        //   }).then(
+        //     this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundData.rounds[round-1].id})
+        // )
+      },
+      updateRounds() {
+         AdminSerivce.getAllRounds().then(response => {
+            this.roundData = response.data
         })
       },
-      // updateRounds() {
-      //    AdminSerivce.getAllRounds().then(response => {
-      //       this.roundData = response.data
-      //   })
-      // },
   }
 
 }
