@@ -20,7 +20,6 @@
               {{item.name}}
             </option>
           </select>
-          <span>choosen: {{$v.user.email.$model}}</span>
 
         </div>
         <button v-on:click="login" class="login__submit">
