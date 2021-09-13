@@ -12,7 +12,8 @@ Vue.use(Router);
 
 export const router = new Router({
         mode: 'history',
-        routes: [{
+        routes: [
+          {
             path: '/auth',
             component: Authorize,
             children: [{

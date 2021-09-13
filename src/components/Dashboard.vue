@@ -29,7 +29,10 @@ export default {
     if(this.userData.name === null){
       this.$store.dispatch('UserData/loadUser')
     }
-  }
+  },
+   beforeCreate() {
+        document.body.className = 'dashboard';
+    },
 }
 </script>
 

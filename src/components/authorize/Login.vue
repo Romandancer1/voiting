@@ -1,13 +1,27 @@
 <template>
+  <div class="login">
     <div class="authorization__container">
     <div>
       <h4>Авторизация</h4>
       <form v-on:submit.prevent>
         <div class="authorization__wrapper">
           <label for="userEmail">Email</label>
-          <input v-model.lazy="$v.user.email.$model"
+          <!-- <input v-model.lazy="$v.user.email.$model"
                  id="userEmail"
-          >
+          > -->
+          
+          <!-- $v - че за дичь answ: validation -->
+          <select id="userEmail" v-model.lazy="$v.user.email.$model">
+            <option 
+              v-for="item in emails" 
+              :key="item.id"
+              :value="item.email"
+              >
+              {{item.name}}
+            </option>
+          </select>
+          <span>choosen: {{$v.user.email.$model}}</span>
+
         </div>
         <button v-on:click="login" class="login__submit">
           <spinner class="login__submit-spinner"  v-if="loginStatus"></spinner>
@@ -20,6 +34,7 @@
               {{isLoginFailedData}}
             </p>
         </div>
+        
 
       </form>
 
@@ -29,7 +44,7 @@
 <!--      </div>-->
     </div>
   </div>
-
+</div>
 </template>
 
 <script>
@@ -42,6 +57,23 @@ export default {
   name: "Login",
   data() {
     return {
+      emails:[
+        {
+          id: 1,
+          name: 'mickeyeasy',
+          email: 'mickeyeasy@gmail.com'
+        },
+        {
+          id: 2,
+          name: 'Федоров П.Ф.',
+          email: 'fedor@gmail.com'
+        },
+        {
+          id: 3,
+          name: 'Иванов П.Ф.',
+          email: 'ivan@gmail.com'
+        }
+        ],
       user: new User('', '', '', '', ''),
       isLoginFailed: false,
       isLoginFailedData: null,
@@ -51,6 +83,9 @@ export default {
   components: {
     Spinner
   },
+  beforeCreate() {
+        document.body.className = 'login';
+    },
   computed: mapState ({
     isLoggedIn: state => state.auth.status.loggedIn,
     loginFailureStatus: state => state.auth.status.loggedError,
@@ -64,11 +99,17 @@ export default {
   validations: {
     user: {
       email: {
-        required, email
+        required, email,
+        getEmail(value){
+          console.log(value)
+          return value
+
+        }
       }
     }
   },
   methods: {
+     
     login(){
       this.$v.$touch();
       if (!this.$v.$invalid) {

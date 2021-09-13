@@ -14,12 +14,15 @@
           <button class="round-select__button" :class="{button__active:round == 2}" v-on:click="loadRound(2)">Раунд 2</button>
           <button class="round-select__button" :class="{button__active:round == 3}" v-on:click="loadRound(3)">Раунд 3</button>
       </div>
-
-
       <participant-table
-                         v-bind:participants=participantList>
+          v-bind:participants=participantList
+          :round="round">
        </participant-table>
+
+     
+
       </div>
+      
     </div>
 </template>
 
@@ -34,9 +37,13 @@ export default {
         Spinner,
         ParticipantTable
     },
+    beforeCreate() {
+        document.body.className = 'voting';
+    },
     data() {
         return {
-            round: 1
+            round: 1,
+            roundData:[]
       }
     },
     beforeMount() {
@@ -55,6 +62,23 @@ export default {
       userDataLoaded: state => state.UserData.userDataLoaded
     }),
     methods: {
+      hideButton(){
+
+      },
+     
+      // closeScore(){
+      //  VotingService.saveParticipantScore({
+      //     is_finished: this.user_selected_option.roundID.is_finished,
+      //     // roundID: this.user_selected_option.roundID,
+      //     // judgeID: this.user_selected_option.judgeID,
+      //     // participantID: this.user_selected_option.participantID,
+      //     // result_management: this.user_selected_option.resultManagment,
+      //     // self_management: this.user_selected_option.selfManagment,
+      //     // client_centricity: this.user_selected_option.clientCentricity
+      //   }).then(
+      //       this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
+      //   )
+      // },
       loadRound(roundID) {
          this.$store.dispatch('VotingData/getParticipants', {roundID: roundID, judgeID: this.userData.id})
          this.round = roundID
@@ -65,11 +89,8 @@ export default {
         if (newValue === false) {
           this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
         }
-
       }
     }
-
-
 }
 </script>
 

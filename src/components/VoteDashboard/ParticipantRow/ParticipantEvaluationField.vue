@@ -2,7 +2,7 @@
         <div class="voting__row-participant-score">
             <div class="voting__row-participant-score-item">
                 Управление результатом/ответственность
-                 <select :disabled="roundID.is_finished" class="voting__select"
+                 <select class="voting__select" :disabled="roundID.is_finished"
                     v-model="user_selected_option.resultManagment"
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
@@ -10,7 +10,10 @@
             </div>
             <div class="voting__row-participant-score-item">
                 Управление собой
-                <select :disabled="roundID.is_finished" class="voting__select"
+                <!-- :disabled="roundID.is_finished" -->
+                <select  class="voting__select" 
+                    
+                    :disabled="roundID.is_finished"
                     v-model="user_selected_option.selfManagment"
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
@@ -18,13 +21,19 @@
             </div>
             <div class="voting__row-participant-score-item">
                 Клиентоцентричность
-                <select :disabled="roundID.is_finished" class="voting__select"
+                <select  class="voting__select" :disabled="roundID.is_finished"
                     v-model="user_selected_option.clientCentricity"
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
                 </select>
             
             </div>
+            <div class="round-select__wrapper">
+            
+        
+      </div>
+
+           
         </div>
 </template>
 
@@ -61,7 +70,19 @@ export default {
         }).then(
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
         )
-      }
+      },
+    //   finishRound(roundID) {
+    //     AdminSerivce.finishRound(roundID)
+    //         .then(response => {
+    //             console.log(response)
+    //             this.updateRounds()
+    //     })
+    //   },
+    //   updateRounds() {
+    //      AdminSerivce.getAllRounds().then(response => {
+    //         this.roundData = response.data
+    //     })
+    //   }
     }
 }
 </script>

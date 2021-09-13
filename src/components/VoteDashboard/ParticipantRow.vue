@@ -5,6 +5,7 @@
        <avatar-fields :participantAvatarPath="rowData.img"></avatar-fields>
        <participant-info-field :item="rowData"></participant-info-field>
   </div>
+  <!-- v-show="!roundID.is_finished" -->
    <participant-evaluation-field :item="rowData" :judgeID="judgeID" :roundID="roundID"></participant-evaluation-field>
 </div>
 </template>

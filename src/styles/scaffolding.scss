@@ -1,5 +1,4 @@
-body {
-
+body.dashboard {
  background: rgb(164,160,220);
  background: linear-gradient(80deg, rgba(164,160,220,1) 0%,
          rgba(30,236,37,0.8573179271708684) 0%,
@@ -8,6 +7,18 @@ body {
          rgba(0,212,255,0.6696428571428572) 100%);
   //background-size: cover;
 }
+body.voting {
+  background: white
+ }
+ body.login {
+  background: rgb(164,160,220);
+  background: linear-gradient(80deg, rgba(164,160,220,1) 0%,
+         rgba(30,236,37,0.8573179271708684) 0%,
+         rgba(228,228,228,0.1984943635657388) 33%,
+         rgba(241,255,252,0.1760853999803046) 63%,
+         rgba(0,212,255,0.6696428571428572) 100%);
+  //background-size: cover;
+ }
 
 #app {
   display: flex;
