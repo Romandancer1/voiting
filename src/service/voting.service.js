@@ -16,6 +16,14 @@ class VotingService {
     async saveParticipantScore(data) {
         return axios.put(API_URL + 'save-score/', data)
     }
+
+    async closeParticipantScore(judgeID, roundID) {
+        return axios.post(API_URL + 'close-score/',{
+            judgeID: judgeID,
+            roundID: roundID,
+        })
+
+    }
 }
 
 export default new VotingService();

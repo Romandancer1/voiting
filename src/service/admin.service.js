@@ -1,5 +1,5 @@
 import axios from "axios";
-
+    
 const API_URL = 'https://voting-app.newtechaudit.ru/api/rounds/';
 
 class AdminService {

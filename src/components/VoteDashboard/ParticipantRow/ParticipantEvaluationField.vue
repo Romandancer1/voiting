@@ -27,23 +27,14 @@
                     @change="updateScore">
                         <option v-for="n in getNumbers(1, 5, 0.5)" :key="n" :value="n">{{ n }} </option>
                 </select>
-            
             </div>
-            <div class="round-select__wrapper">
-            
-        
-      </div>
-
-           
         </div>
 </template>
 
 <script>
-
 import Participant from "@/models/participant";
 import VotingService from "@/service/voting.service";
 import {mapState} from "vuex";
-
 export default {
     props:['item', 'judgeID', 'roundID'],
     data(){
@@ -72,6 +63,7 @@ export default {
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
         )
       },
+     
     //   finishRound(roundID) {
     //     AdminSerivce.finishRound(roundID)
     //         .then(response => {
@@ -89,5 +81,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

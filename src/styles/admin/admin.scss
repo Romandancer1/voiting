@@ -1,6 +1,7 @@
 .admin__round {
     display: flex;
     justify-content: space-between;
+    padding-top: 20px;
     align-items: center;
     margin-bottom: 15px;
 }
@@ -15,8 +16,34 @@
 
 .admin__download {
     padding: 10px;
+    text-align: center;
     color: white;
     background-color: green;
     border: none;
     border-radius: 5px;
 }
+.admin_table_{
+  padding-top: 20px;
+}
+.admin_table_row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.admin_table_columns{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 65px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.admin_table_column{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 90px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
