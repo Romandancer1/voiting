@@ -7,8 +7,15 @@ class JudgeService {
          return await axios.post(API_URL + 'get-finished/')
         .then(response => {
             return response.data
-    })
-  }
+        })
+    }
+
+    async finishParticipantScore(id, roundID) {
+        return axios.put(API_URL + 'finish-score/' + id, {
+            roundID: roundID
+        })
+    }
+
 }
 
 export default new JudgeService();

@@ -63,19 +63,6 @@ export default {
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
         )
       },
-     
-    //   finishRound(roundID) {
-    //     AdminSerivce.finishRound(roundID)
-    //         .then(response => {
-    //             console.log(response)
-    //             this.updateRounds()
-    //     })
-    //   },
-    //   updateRounds() {
-    //      AdminSerivce.getAllRounds().then(response => {
-    //         this.roundData = response.data
-    //     })
-    //   }
     }
 }
 </script>

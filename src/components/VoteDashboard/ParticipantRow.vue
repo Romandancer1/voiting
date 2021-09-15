@@ -34,9 +34,6 @@ export default{
     ParticipantEvaluationField,
     ParticipantInfoField
   },
-  // mounted() {
-  //   this.bus.$on('lo', this.lo)
-  // },
   methods:{
     updateFromPartEvalFields(){
       this.updateScr()
