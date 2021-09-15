@@ -5,12 +5,7 @@
       <h4>Авторизация</h4>
       <form v-on:submit.prevent>
         <div class="authorization__wrapper">
-          <label for="userEmail">Email</label>
-          <!-- <input v-model.lazy="$v.user.email.$model"
-                 id="userEmail"
-          > -->
-          
-          <!-- $v - че за дичь answ: validation -->
+          <label for="userEmail">Выберите пользователя</label>
           <select id="userEmail" v-model.lazy="$v.user.email.$model">
             <option 
               v-for="item in emails" 
@@ -48,6 +43,7 @@
 
 <script>
 import User from "../../models/user";
+import JudgeService from "@/service/judge.service"
 import Spinner from 'vue-simple-spinner';
 import { mapState } from 'vuex';
 import { required, email } from 'vuelidate/lib/validators'
@@ -56,23 +52,22 @@ export default {
   name: "Login",
   data() {
     return {
-      emails:[
-        {
-          id: 1,
-          name: 'mickeyeasy',
-          email: 'mickeyeasy@gmail.com'
-        },
-        {
-          id: 2,
-          name: 'Федоров П.Ф.',
-          email: 'fedor@gmail.com'
-        },
-        {
-          id: 3,
-          name: 'Иванов П.Ф.',
-          email: 'ivan@gmail.com'
-        }
-        ],
+      emails: [],
+        // {
+        //   id: 1,
+        //   name: 'mickeyeasy',
+        //   email: 'mickeyeasy@gmail.com'
+        // },
+        // {
+        //   id: 2,
+        //   name: 'Федоров П.Ф.',
+        //   email: 'fedor@gmail.com'
+        // },
+        // {
+        //   id: 3,
+        //   name: 'Иванов П.Ф.',
+        //   email: 'ivan@gmail.com'
+        // },
       user: new User('', '', '', '', ''),
       isLoginFailed: false,
       isLoginFailedData: null,
@@ -84,7 +79,13 @@ export default {
   },
   beforeCreate() {
         document.body.className = 'login';
-    },
+  },
+  mounted() {
+       JudgeService.getFinished().then(response => {
+         this.emails = response.judge
+       }
+     )
+  },
   computed: mapState ({
     isLoggedIn: state => state.auth.status.loggedIn,
     loginFailureStatus: state => state.auth.status.loggedError,
@@ -100,7 +101,6 @@ export default {
       email: {
         required, email,
         getEmail(value){
-          console.log(value)
           return value
 
         }
