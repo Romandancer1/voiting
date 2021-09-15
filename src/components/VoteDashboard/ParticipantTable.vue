@@ -72,6 +72,7 @@ export default {
         )
      },
      getFinishedScore(dict) {
+       if (dict[''.concat('round_', this.round, '_finished')] === true) {
           let aggregatedData = []
           this.participants.game[0].table_id.participant_id.forEach(
               value => {
@@ -88,7 +89,10 @@ export default {
              aggregatedData[i-1]['rating'] = i
           }
           this.scoreData = aggregatedData
-          return !!dict[''.concat('round_', this.round, '_finished')];
+          return true
+       }
+       return false
+          // return !!dict[''.concat('round_', this.round, '_finished')];
      }
 
   }
