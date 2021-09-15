@@ -23,7 +23,7 @@
             <div v-for="item in judgeData" :key="item.id">
                 <div class="admin_table_row">
                     <div class="admin_table_column" >
-                      <p> {{judgeData[item.id-1].name}}</p>
+                      <p>{{judgeData[item.id-1].name}}</p>
                     </div>
                     <div class="admin_table_columns">
                       <p v-if="judgeData[item.id-1].round_1_finished">&#10004;&#65039;</p>
@@ -49,7 +49,6 @@
           <button @click="getFinished()">btn</button>
         </div> -->
       </div>
-
         <!-- <div v-for="it in participantList.game[0].round_id" :key="it">
             {{it}}
         </div>
@@ -62,7 +61,6 @@
         <strong v-if="participantList.game[0].round_id.is_finished">{{participantList.game[0].judge_id.name}} 
           раунд {{participantList.game[0].round_id.id}} завершил</strong>
         </div> -->
-   
 </template>
 
 <script>
