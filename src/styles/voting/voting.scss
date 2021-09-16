@@ -42,7 +42,10 @@
     margin-bottom: 10px;
 }
 .voting__table {
+    padding: 4px;
     margin-bottom: 10px;
+    color: white;
+    background-color: rgb(12, 122, 12);
 }
 
 .round-select__wrapper {
@@ -117,7 +120,6 @@
     color: white;
     text-decoration: none;
 }
-
 
 .voting__select {
     margin: 0;

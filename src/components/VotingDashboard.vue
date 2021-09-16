@@ -5,10 +5,15 @@
       <div class="navigation">
         <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
       </div>
-      <div class="voting__name">
-           <span>Имя жюри: {{userData.name}}</span>
+      <div class="participant__image">
+         <img style="height: 60px;" :src="require(`@/assets/avatar.png`)"/>
       </div>
-      <span class="voting__table">Вы оцениваете стол №{{participantList.game[0].table_id.table_id}}</span>
+      <div class="voting__name">
+           <span>Имя жюри: <strong>{{userData.name}}</strong></span>
+      </div>
+      <div class="voting__table">
+          <span >Вы оцениваете стол №{{participantList.game[0].table_id.table_id}}</span>
+      </div>
       <div class="round-select__wrapper">
           <button class="round-select__button" :class="{button__active:round == 1}" v-on:click="loadRound(1)">Раунд 1</button>
           <button class="round-select__button" :class="{button__active:round == 2}" v-on:click="loadRound(2)">Раунд 2</button>
