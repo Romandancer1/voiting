@@ -14,15 +14,10 @@
           <button class="round-select__button" :class="{button__active:round == 2}" v-on:click="loadRound(2)">Раунд 2</button>
           <button class="round-select__button" :class="{button__active:round == 3}" v-on:click="loadRound(3)">Раунд 3</button>
       </div>
-      <participant-table
-          v-bind:participants=participantList
-          :round="round">
+      <participant-table :round="round"
+                         :participants=participantList>
       </participant-table>
-
-     
-
       </div>
-      
     </div>
 </template>
 
@@ -52,7 +47,6 @@ export default {
       } else {
         this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
       }
-      // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
     },
     computed: mapState({
       participantList: state => state.VotingData.participantList,

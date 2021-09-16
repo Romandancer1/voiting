@@ -31,11 +31,6 @@
         
 
       </form>
-
-<!--      <div class="authorization__footer authorization__footer&#45;&#45;justify-space">-->
-<!--        <span class="authorization__footer-text">Нет аккаунта? </span>-->
-<!--        <router-link to="/register" class="authorization__footer-link">Зарегистрироваться</router-link>-->
-<!--      </div>-->
     </div>
   </div>
 </div>
@@ -115,6 +110,7 @@ export default {
          this.$store.dispatch('auth/login', this.user)
           .then(() => {
               if (this.isLoggedIn) {
+                this.$store.dispatch('UserData/loadUser')
                 this.$router.push('/voting');
               } else {
                 this.isLoginFailed = true;
@@ -127,9 +123,6 @@ export default {
           })
       }
     }
-    // reloadLogin() {
-    //   this.isLoginFailed = false;
-    // }
   },
 }
 </script>
