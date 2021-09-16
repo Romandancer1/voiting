@@ -3,28 +3,24 @@
       <div v-if="participants.game[0].round_id.is_finished" style="max-width: 200px; color: red">
         <span> Данный раунд завершен. Измененить оценку более невозможно </span>
       </div>
-      <div v-if="getFinishedScore(participants.game[0].judge_id)">
-            <div class="voting__score">
-                <p>Имя участника</p>
-                <p class="voting__score--short">Баллы</p>
-                <p class="voting__score--short">Ранг</p>
-            </div>
-            <participant-score v-for="item in scoreData"
-                               :key="item.rating"
-                               :score="item"
-            >
-
-            </participant-score>
-
-      </div>
-      <div v-else>
-           <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
-                          :key="item.id"
-                          :rowData="item"
-                          :judge-i-d="participants.game[0].judge_id"
-                          :roundID = "participants.game[0].round_id"
-                          ref="row"
-           />
+<!--      <spinner v-if="participantDataLoaded"></spinner>-->
+<!--      <div v-else>-->
+          <div v-if="!participantDataLoaded && getFinishedScore(participants.game[0].judge_id)">
+                <div class="voting__score">
+                    <p>Имя участника</p>
+                    <p class="voting__score--short">Баллы</p>
+                    <p class="voting__score--short">Ранг</p>
+                </div>
+                <participant-score-table :score-data="scoreData"></participant-score-table>
+          </div>
+           <div v-else-if="participants.game[0].judge_id[''.concat('round_', this.round, '_finished')] === false">
+             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
+                            :key="item.id"
+                            :rowData="item"
+                            :judge-i-d="participants.game[0].judge_id"
+                            :roundID = "participants.game[0].round_id"
+                            ref="row"
+             />
 
           <div style="text-align: center" class="voting__finish">
             <!-- {{participants.game[0].round_id}} -->
@@ -37,6 +33,8 @@
           </div>
 
       </div>
+<!--      </div>-->
+
     </div>
 </template>
 
@@ -44,14 +42,16 @@
 import ParticipantRow from '@/components/VoteDashboard/ParticipantRow';
 import {mapState} from "vuex";
 import JudgeSerivce from "@/service/judge.service";
-import ParticipantScore from "./ParticipantScore";
+import ParticipantScoreTable from "./ParticipantScoreTable";
+// import Spinner from 'vue-simple-spinner';
 
 export default {
   name: "ParticipantTable",
   props:['participants', 'round'],
   components: {
       ParticipantRow,
-      ParticipantScore
+      ParticipantScoreTable,
+      // Spinner
   },
    data() {
       return {
@@ -61,6 +61,7 @@ export default {
   },
   computed: mapState({
       userData: state => state.UserData.user,
+      participantDataLoaded: state => state.VotingData.participantDataLoaded,
   }),
   methods:{
      updateSummaryScore() {
@@ -72,27 +73,30 @@ export default {
         )
      },
      getFinishedScore(dict) {
-       if (dict[''.concat('round_', this.round, '_finished')] === true) {
-          let aggregatedData = []
-          this.participants.game[0].table_id.participant_id.forEach(
-              value => {
-                aggregatedData.push({
-                   name: value.name,
-                   score: value.participant_score[0].client_centricity +
-                    value.participant_score[0].result_management  +
-                    value.participant_score[0].self_management
-                })
-              }
-          )
-          aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
-          for (var i = 1; i <= aggregatedData.length; i++) {
-             aggregatedData[i-1]['rating'] = i
+       if (this.participants['game'].length > 0) {
+          if (dict[''.concat('round_', this.round, '_finished')] === true) {
+            let aggregatedData = []
+            let searchedData = this.participants['game'][0]['table_id']['participant_id'].slice()
+            searchedData.forEach(
+                value => {
+                  aggregatedData.push({
+                     name: value.name,
+                     score: value.participant_score[0].client_centricity +
+                      value.participant_score[0].result_management  +
+                      value.participant_score[0].self_management
+                  })
+                }
+            )
+            aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+            for (var i = 1; i <= aggregatedData.length; i++) {
+              aggregatedData[i - 1]['rating'] = i
+            }
+            this.scoreData = aggregatedData
+            return true
           }
-          this.scoreData = aggregatedData
-          return true
        }
+
        return false
-          // return !!dict[''.concat('round_', this.round, '_finished')];
      }
 
   }
