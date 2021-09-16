@@ -30,10 +30,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
-
-
 
 .voting__content {
 
@@ -158,4 +158,25 @@ select{
 }
 option{
     text-align: center;
+}
+
+.voting__finish {
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.voting__score {
+    display: flex;
+    justify-content: space-between;
+}
+
+.voting__score--short {
+    max-width: 30px;
+    width: 30px;
+}
+.voting__score p {
+    margin-bottom: 10px;
+    width: 100%;
+    margin-right: 20px;
+    font-size: 14px;
 }

@@ -85,11 +85,16 @@ name: "AdminPage",
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
-        console.log('pidr\'s')
         this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
       }
       // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
-    }, 
+  },
+  mounted() {
+       setInterval(() =>  {
+            this.getFinished()}
+         ,60 * 1000);
+
+  },
   computed:mapState({
       participantList: state => state.VotingData.participantList,
       participantDataLoaded: state => state.VotingData.participantDataLoaded,
@@ -108,15 +113,11 @@ name: "AdminPage",
       updateRounds() {
          AdminSerivce.getAllRounds().then(response => {
             this.roundData = response.data;
-            
         })
       },
       getFinished(){
         JudgeService.getFinished().then(response => {
           this.judgeData = response.judge;
-            // this.jurdgeData = response.data;
-            console.log(this.judgeData);
-            
         });
         this.showTable=true;
   }

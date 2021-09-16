@@ -17,7 +17,7 @@
       <participant-table
           v-bind:participants=participantList
           :round="round">
-       </participant-table>
+      </participant-table>
 
      
 
@@ -50,7 +50,6 @@ export default {
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
-        console.log('pidr')
         this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
       }
       // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
@@ -62,19 +61,6 @@ export default {
       userDataLoaded: state => state.UserData.userDataLoaded
     }),
     methods: {
-      // closeScore(){
-      //  VotingService.saveParticipantScore({
-      //     is_finished: this.user_selected_option.roundID.is_finished,
-      //     // roundID: this.user_selected_option.roundID,
-      //     // judgeID: this.user_selected_option.judgeID,
-      //     // participantID: this.user_selected_option.participantID,
-      //     // result_management: this.user_selected_option.resultManagment,
-      //     // self_management: this.user_selected_option.selfManagment,
-      //     // client_centricity: this.user_selected_option.clientCentricity
-      //   }).then(
-      //       this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
-      //   )
-      // },
       loadRound(roundID) {
          this.$store.dispatch('VotingData/getParticipants', {roundID: roundID, judgeID: this.userData.id})
          this.round = roundID
