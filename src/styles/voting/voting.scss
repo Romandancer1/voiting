@@ -42,8 +42,12 @@
     margin-bottom: 10px;
 }
 .voting__table {
-    padding: 4px;
+    padding: 8px;
+    position: relative;
+    justify-content: center;
+    margin-right: 10px;
     margin-bottom: 10px;
+    text-align: center;
     color: white;
     background-color: rgb(12, 122, 12);
 }

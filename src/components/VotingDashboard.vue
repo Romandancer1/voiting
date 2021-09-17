@@ -11,8 +11,12 @@
       <div class="voting__name">
            <span>Имя жюри: <strong>{{userData.name}}</strong></span>
       </div>
+      <div style="padding-bottom: 10px">
+        <span >Вы оцениваете</span>
+      </div>
+          
       <div class="voting__table">
-          <span >Вы оцениваете стол №{{participantList.game[0].table_id.table_id}}</span>
+        <span> Cтол №{{participantList.game[0].table_id.table_id}}</span>
       </div>
       <div class="round-select__wrapper">
           <button class="round-select__button" :class="{button__active:round == 1}" v-on:click="loadRound(1)">Раунд 1</button>
