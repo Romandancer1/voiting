@@ -11,7 +11,7 @@
                     <p class="voting__score--short">Баллы</p>
                     <p class="voting__score--short">Ранг</p>
                 </div>
-                <participant-score-table :score-data="scoreData"></participant-score-table>
+                <participant-score-table :score-data="scoreData2"></participant-score-table>
           </div>
            <div v-else-if="participants.game[0].judge_id[''.concat('round_', this.round, '_finished')] === false">
              <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
@@ -56,7 +56,7 @@ export default {
    data() {
       return {
           roundData: [],
-          scoreData: []
+          scoreData2: {},
     }
   },
   computed: mapState({
@@ -65,6 +65,7 @@ export default {
   }),
   methods:{
      updateSummaryScore() {
+       
         for (this.item in this.participants.game[0].table_id.participant_id) {
           this.$refs.row[this.item].updateFromPartEvalFields();
         }
@@ -72,6 +73,7 @@ export default {
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
         )
      },
+   
      getFinishedScore(dict) {
        if (this.participants['game'].length > 0) {
           if (dict[''.concat('round_', this.round, '_finished')] === true) {
@@ -88,17 +90,32 @@ export default {
                 }
             )
             aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+
             for (var i = 1; i <= aggregatedData.length; i++) {
               aggregatedData[i - 1]['rating'] = i
+              
             }
-            this.scoreData = aggregatedData
+           
+            // for (var i = 1; i<=aggregatedData.length; i++){
+            //   this.scoreData[i-1]['rating'] = i
+            //   console.log(aggregatedData[i])
+
+            // }
+            // this.scoreData = aggregatedData
+            this.scoreData2= aggregatedData
+            console.log(this.scoreData2)
+
             return true
+            
           }
        }
 
        return false
      }
 
+  },
+  mounted:{
+    
   }
 }
 </script>
