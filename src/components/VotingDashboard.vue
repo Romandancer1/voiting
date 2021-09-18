@@ -16,7 +16,9 @@
       </div>
           
       <div class="voting__table">
-        <span> Cтол №{{participantList.game[0].table_id.table_id}}</span>
+          <spinner v-if="participantDataLoaded"></spinner>
+<!--          <span v-else> Cтол №{{participantList.game[0].table_id.table_id}}</span>-->
+          <span v-else> Стол № {{tableID}}</span>
       </div>
       <div class="round-select__wrapper">
           <button class="round-select__button" :class="{button__active:round == 1}" v-on:click="loadRound(1)">Раунд 1</button>
@@ -47,14 +49,17 @@ export default {
     data() {
         return {
             round: 1,
-            roundData:[]
+            roundData:[],
+            tableID: null
       }
     },
-    beforeMount() {
+    created() {
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
-        this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
+        this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id}).then(
+
+        )
       }
     },
     computed: mapState({
@@ -67,6 +72,9 @@ export default {
       loadRound(roundID) {
          this.$store.dispatch('VotingData/getParticipants', {roundID: roundID, judgeID: this.userData.id})
          this.round = roundID
+      },
+      getActiveTable(){
+          this.tableID = this.$store.getters['VotingData/getCurrentTableID']
       }
     },
     watch: {
@@ -74,6 +82,9 @@ export default {
         if (newValue === false) {
           this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
         }
+      },
+      participantList: function () {
+         this.getActiveTable()
       }
     }
 }

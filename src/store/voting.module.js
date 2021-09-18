@@ -32,6 +32,16 @@ export const VotingData = {
         },
         getParticipantsLoadingStatus(state) {
             return state.participantDataLoaded
+        },
+        getCurrentTableID(state) {
+            return state.participantList['game'][0]['table_id']['table_id']
+        },
+        isRoundFinished(state){
+            console.log(state.participantList['game'][0]['round_id']['is_finished'])
+            return state.participantList['game'][0]['round_id']['is_finished']
+        },
+        isCurrentScoreFinished: (state) => (roundID) => {
+            return state.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]
         }
     }
 }
