@@ -42,6 +42,30 @@ export const VotingData = {
         },
         isCurrentScoreFinished: (state) => (roundID) => {
             return state.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]
+        },
+        getFinishedScore: (state) => (dict, roundID) => {
+            if (state.participantList['game'].length > 0) {
+                if (dict[''.concat('round_', roundID, '_finished')] === true) {
+                  let aggregatedData = []
+                  let searchedData = state.participantList['game'][0]['table_id']['participant_id'].slice()
+                  searchedData.forEach(
+                      value => {
+                        aggregatedData.push({
+                           name: value.name,
+                           score: value.participant_score[0].client_centricity +
+                            value.participant_score[0].result_management  +
+                            value.participant_score[0].self_management
+                        })
+                      }
+                  )
+                  aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+                  for (var i = 1; i <= aggregatedData.length; i++) {
+                    aggregatedData[i - 1]['rating'] = i
+                  }
+                  return aggregatedData
+                }
+             }
+             return false
         }
     }
 }

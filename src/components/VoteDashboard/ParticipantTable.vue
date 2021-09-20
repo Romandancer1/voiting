@@ -12,16 +12,18 @@
             <p class="voting__score--short">Ранг</p>
           </div>
 
-          <participant-score-table :score-data="getFinishedScore"></participant-score-table>
+          <participant-score-table :score-data="this.scoreData"></participant-score-table>
         </div>
-<!--        <div v-else>-->
-             <!--             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"-->
-<!--                            :key="item.id"-->
-<!--                            :rowData="item"-->
-<!--                            :judge-i-d="participants.game[0].judge_id"-->
-<!--                            :roundID = "participants.game[0].round_id"-->
-<!--                            ref="row"-->
-<!--             />-->
+       <div v-else-if="participants.length !== 0">
+         <!-- <div v-if="this.participants.length !== 0"> -->
+            <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
+              :key="item.id"
+              :rowData="item"
+              :judge-i-d="participants.game[0].judge_id"
+              :roundID = "participants.game[0].round_id"
+              ref="row"
+            />
+          <!-- </div> -->
 
           <div style="text-align: center" class="voting__finish">
             <button class="round-select__button"
@@ -33,11 +35,11 @@
 
       </div>
       </div>
-<!--    </div>-->
+    </div>
 </template>
 
 <script>
-// import ParticipantRow from '@/components/VoteDashboard/ParticipantRow';
+import ParticipantRow from '@/components/VoteDashboard/ParticipantRow';
 import {mapState} from "vuex";
 import JudgeSerivce from "@/service/judge.service";
 import ParticipantScoreTable from "./ParticipantScoreTable";
@@ -47,14 +49,14 @@ export default {
   name: "ParticipantTable",
   props:['participants', 'round'],
   components: {
-      // ParticipantRow,
+      ParticipantRow,
       ParticipantScoreTable,
       Spinner
   },
    data() {
       return {
           roundData: [],
-          scoreData2: {},
+          scoreData: [],
           isCurrentRoundFinished: false,
           isJudgeFinished: false
     }
@@ -80,47 +82,42 @@ export default {
        if(this.participants.length !== 0) {
           this.isCurrentRoundFinished =  this.$store.getters['VotingData/isRoundFinished']
           this.isJudgeFinished = this.$store.getters['VotingData/isCurrentScoreFinished'](this.round)
+          this.scoreData = this.$store.getters['VotingData/getFinishedScore'](this.participants.game[0].judge_id, this.round)
        }
-     }
-     //
-     // getFinishedScore(dict) {
-     //   if (this.participants['game'].length > 0) {
-     //      if (dict[''.concat('round_', this.round, '_finished')] === true) {
-     //        let aggregatedData = []
-     //        let searchedData = this.participants['game'][0]['table_id']['participant_id'].slice()
-     //        searchedData.forEach(
-     //            value => {
-     //              aggregatedData.push({
-     //                 name: value.name,
-     //                 score: value.participant_score[0].client_centricity +
-     //                  value.participant_score[0].result_management  +
-     //                  value.participant_score[0].self_management
-     //              })
-     //            }
-     //        )
-     //        aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
-     //
-     //        for (var i = 1; i <= aggregatedData.length; i++) {
-     //          aggregatedData[i - 1]['rating'] = i
-     //
-     //        }
-     //
-     //        // for (var i = 1; i<=aggregatedData.length; i++){
-     //        //   this.scoreData[i-1]['rating'] = i
-     //        //   console.log(aggregatedData[i])
-     //
-     //        // }
-     //        // this.scoreData = aggregatedData
-     //        this.scoreData2= aggregatedData
-     //        console.log(this.scoreData2)
-     //
-     //        return true
-     //
-     //      }
-     //   }
-     //
-     //   return false
-     // }
+     },
+    //  getFinishedScore(dict) {
+    //    if (this.participants['game'].length > 0) {
+    //       if (dict[''.concat('round_', this.round, '_finished')] === true) {
+    //         let aggregatedData = []
+    //         let searchedData = this.participants['game'][0]['table_id']['participant_id'].slice()
+    //         searchedData.forEach(
+    //             value => {
+    //               aggregatedData.push({
+    //                  name: value.name,
+    //                  score: value.participant_score[0].client_centricity +
+    //                   value.participant_score[0].result_management  +
+    //                   value.participant_score[0].self_management
+    //               })
+    //             }
+    //         )
+    //         aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+     
+    //         for (var i = 1; i <= aggregatedData.length; i++) {
+    //           aggregatedData[i - 1]['rating'] = i
+     
+    //         }
+     
+           
+    //         this.scoreData = aggregatedData
+    //         console.log(this.scoreData)
+     
+    //         return this.scoreData
+     
+    //       }
+    //    }
+     
+    //    return false
+    //  },
 
   },
   watch: {
