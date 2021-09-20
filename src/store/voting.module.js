@@ -24,7 +24,16 @@ export const VotingData = {
                     commit('updateParticipantList',  result.data)
                     commit('updateLoadingStatus', false)
                 })
-        }
+        },
+        getPart({commit}, query) {
+            // commit('updateLoadingStatus', true)
+            return VotingService.getParticipantList(query.roundID, query.judgeID)
+                .then(result => {
+                    commit('updateParticipantList',  result.data)
+                    commit('updateLoadingStatus', false)
+                })
+        },
+
     },
     getters: {
         getParticipantsData(state) {
@@ -37,7 +46,7 @@ export const VotingData = {
             return state.participantList['game'][0]['table_id']['table_id']
         },
         isRoundFinished(state){
-            console.log(state.participantList['game'][0]['round_id']['is_finished'])
+            // console.log(state.participantList['game'][0]['round_id']['is_finished'])
             return state.participantList['game'][0]['round_id']['is_finished']
         },
         isCurrentScoreFinished: (state) => (roundID) => {

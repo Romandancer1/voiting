@@ -3,7 +3,8 @@
       <div v-if="isCurrentRoundFinished" style="max-width: 200px; color: red">
         <span> Данный раунд завершен</span>
       </div>
-      <spinner v-if="participantDataLoaded"></spinner>
+      <p v-if="participantDataLoaded">Load</p>
+      <!-- <spinner v-if="participantDataLoaded"></spinner> -->
       <div v-else>
         <div v-if="isJudgeFinished">
           <div class="voting__score">
@@ -15,7 +16,6 @@
           <participant-score-table :score-data="this.scoreData"></participant-score-table>
         </div>
        <div v-else-if="participants.length !== 0">
-         <!-- <div v-if="this.participants.length !== 0"> -->
             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
               :key="item.id"
               :rowData="item"
@@ -23,8 +23,6 @@
               :roundID = "participants.game[0].round_id"
               ref="row"
             />
-          <!-- </div> -->
-
           <div style="text-align: center" class="voting__finish">
             <button class="round-select__button"
                     v-if="!isCurrentRoundFinished && !isJudgeFinished"
@@ -63,7 +61,6 @@ export default {
   },
   mounted() {
       this.getRoundStatus()
-
   },
   computed: mapState({
       userData: state => state.UserData.user,
@@ -104,21 +101,15 @@ export default {
      
     //         for (var i = 1; i <= aggregatedData.length; i++) {
     //           aggregatedData[i - 1]['rating'] = i
-     
     //         }
-     
-           
+    
     //         this.scoreData = aggregatedData
     //         console.log(this.scoreData)
-     
     //         return this.scoreData
-     
     //       }
     //    }
-     
     //    return false
     //  },
-
   },
   watch: {
     participants: function () {

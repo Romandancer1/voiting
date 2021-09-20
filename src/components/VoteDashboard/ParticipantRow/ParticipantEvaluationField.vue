@@ -60,7 +60,7 @@ export default {
           self_management: this.user_selected_option.selfManagment,
           client_centricity: this.user_selected_option.clientCentricity
         }).then(
-            this.$store.dispatch('VotingData/getParticipants', {roundID: this.roundID.id, judgeID: this.userData.id})
+            this.$store.dispatch('VotingData/getPart', {roundID: this.roundID.id, judgeID: this.userData.id})
         )
       },
     }

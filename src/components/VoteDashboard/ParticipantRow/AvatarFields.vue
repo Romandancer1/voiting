@@ -1,6 +1,9 @@
 <template>
     <div class="participant__image">
-        <img class="pictures" :src="require(`@/assets/avatar.png`)"/>
+        <img class="pictures" :src="`https://voting-app.newtechaudit.ru${participantAvatarPath}`"/>
+        <!-- /uploads/ + participantAvatarPath -->
+        <!-- Storage::url($profile->avatar)
+        $profile->avatar = url($profile->avatar); -->
     </div>
 </template>
 
@@ -13,6 +16,9 @@ export default {
 
 <style scoped>
 .pictures{
-    height: 90px;
+    height: 100px;
+    width: auto;
+    border-radius: 100px;
+    margin-right: 10px;
 }
 </style>

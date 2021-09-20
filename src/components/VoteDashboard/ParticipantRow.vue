@@ -4,7 +4,7 @@
   <div class="voting__row-wrapper">
       <avatar-fields  
         v-show="!roundID.is_finished" 
-        :participantAvatarPath="rowData.img">
+        :participantAvatarPath="rowData.portrait">
       </avatar-fields>
 
       <participant-info-field 
