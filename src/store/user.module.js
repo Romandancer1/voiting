@@ -15,7 +15,8 @@ export const UserData = {
         getUserData(state, userData) {
             state.user.email = userData.judge.email;
             state.user.name = userData.judge.name;
-            state.user.id = userData.judge.id
+            state.user.id = userData.judge.id;
+            state.user.portrait = userData.judge.portrait;
         },
         updateLoadingStatus(state, newLoadingStatus) {
             state.userDataLoaded= newLoadingStatus
