@@ -1,9 +1,6 @@
 <template>
     <div class="participant__image">
-        <img class="pictures" :src="`https://voting-app.newtechaudit.ru${participantAvatarPath}`"/>
-        <!-- /uploads/ + participantAvatarPath -->
-        <!-- Storage::url($profile->avatar)
-        $profile->avatar = url($profile->avatar); -->
+        <img class="image_participant" :src="`https://voting-app.newtechaudit.ru${participantAvatarPath}`"/>
     </div>
 </template>
 
@@ -13,12 +10,3 @@ export default {
     props: ['participantAvatarPath']
 }
 </script>
-
-<style scoped>
-.pictures{
-    height: 100px;
-    width: auto;
-    border-radius: 100px;
-    margin-right: 10px;
-}
-</style>

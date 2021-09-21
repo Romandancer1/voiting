@@ -5,9 +5,7 @@
       <div class="navigation">
         <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
       </div>
-      <div class="participant__image">
-         <img style="height: 60px;" :src="require(`@/assets/avatar.png`)"/>
-      </div>
+       <judge-avatar :participantAvatarPath="userData.portrait"></judge-avatar>
       <div class="voting__name">
            <span>Имя жюри: <strong>{{userData.name}}</strong></span>
       </div>
@@ -36,12 +34,14 @@
 
 import Spinner from 'vue-simple-spinner';
 import ParticipantTable from "@/components/VoteDashboard/ParticipantTable";
+import JudgeAvatar from "@/components/VoteDashboard/JudgeAvatar";
 import {mapState} from "vuex";
 
 export default {
     components: {
         Spinner,
-        ParticipantTable
+        ParticipantTable,
+        JudgeAvatar
     },
     beforeCreate() {
         document.body.className = 'voting';
