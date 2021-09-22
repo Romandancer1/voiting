@@ -63,6 +63,13 @@ export default {
           //   top: 300
           // }
         },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
 
       }
     }

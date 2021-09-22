@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Vuelidate from 'vuelidate'
+require('es6-promise/auto');
 
 import { router } from "./router";
 import store from "./store"

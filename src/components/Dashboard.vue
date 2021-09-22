@@ -1,11 +1,11 @@
 <template>
-
-    <div class="dashboard">
-
-           <div class="navigation" v-if="userData.name != null">
-                <router-link class="navigation__link" to="/voting">Голосование</router-link>
-           </div>
-          <participant-bar-chart></participant-bar-chart>
+    <div class="dashboard__wrapper">
+         <div class="dashboard">
+              <div class="navigation" v-if="userData.name != null">
+                  <router-link class="navigation__link" to="/voting">Голосование</router-link>
+              </div>
+              <participant-bar-chart></participant-bar-chart>
+         </div>
     </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
     }
   },
    beforeCreate() {
-        document.body.className = 'dashboard';
+        document.body.className = 'body--dashboarded';
     },
 }
 </script>

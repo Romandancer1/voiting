@@ -21,46 +21,32 @@
               <div class="admin_table_columns"><strong>Раунд 3</strong></div>
             </div>
             <div v-for="item in judgeData" :key="item.id">
-                <div class="admin_table_row">
-                    <div class="admin_table_column" >
-                      <p>{{judgeData[item.id-1].name}}</p>
+                 <div class="admin_table_row">
+                     <div class="admin_table_column" >
+                        <p>{{item.name}}</p>
+                     </div>
+                    <div class="admin_table_columns">
+                         <p v-if="item.round_1_finished">&#10004;&#65039;</p>
+                         <p v-else>&#10006;</p>
                     </div>
                     <div class="admin_table_columns">
-                      <p v-if="judgeData[item.id-1].round_1_finished">&#10004;&#65039;</p>
+                      <p v-if="item.round_2_finished">&#10004;&#65039;</p>
                       <p v-else>&#10006;</p>
                     </div>
                     <div class="admin_table_columns">
-                      <p v-if="judgeData[item.id-1].round_2_finished">&#10004;&#65039;</p>
+                      <p v-if="item.round_3_finished"> &#10004;&#65039;</p>
                       <p v-else>&#10006;</p>
                     </div>
-                    <div class="admin_table_columns">
-                      <p v-if="judgeData[item.id-1].round_3_finished"> &#10004;&#65039;</p>
-                      <p v-else>&#10006;</p>
-                    </div>
-                </div>
+                 </div>
             </div>
-          </div>  
+        </div>
+
         <div style="text-align: center;">
           <button class="admin__download">
             Выгрузить результаты в excel
         </button>
         </div>
-        <!-- <div >
-          <button @click="getFinished()">btn</button>
-        </div> -->
       </div>
-        <!-- <div v-for="it in participantList.game[0].round_id" :key="it">
-            {{it}}
-        </div>
-        <div  >
-          {{participantList}}
-        </div>
-        <div>{{roundData}}</div>
-      <div v-for="i in roundData.rounds"
-            :key="i.id">
-        <strong v-if="participantList.game[0].round_id.is_finished">{{participantList.game[0].judge_id.name}} 
-          раунд {{participantList.game[0].round_id.id}} завершил</strong>
-        </div> -->
 </template>
 
 <script>
@@ -82,12 +68,6 @@ name: "AdminPage",
   beforeMount() {
       this.getFinished();
       this.updateRounds();
-      if(this.userData.name === null){
-        this.$store.dispatch('UserData/loadUser')
-      } else {
-        this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
-      }
-      // this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
   },
   mounted() {
        setInterval(() =>  {
