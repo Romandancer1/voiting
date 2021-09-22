@@ -49,7 +49,8 @@
     margin-bottom: 10px;
     text-align: center;
     color: white;
-    background-color: rgb(12, 122, 12);
+    border-radius: 2px;
+    background-color: green;
 }
 
 .round-select__wrapper {
@@ -85,12 +86,14 @@
 }
 .round-select__button {
     padding: 15px;
+    border-radius: 2px;
     background-color: lightblue;
     border: none;
     text-align: center;
 }
 
 .button__active {
+    border-radius: 2px;
     background-color: green;
     color: white;
 }
@@ -124,7 +127,8 @@ body--dashboarded {
 }
 .navigation__link {
     padding: 5px;
-    background-color: darkgreen;
+    background-color: green;
+    border-radius: 2px;
     color: white;
     text-decoration: none;
 }

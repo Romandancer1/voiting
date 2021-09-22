@@ -1,10 +1,10 @@
 .authorization__container {
   padding: 20px;
-  border: 1px solid black;
+  box-shadow: 0px 0px 10px 3px rgb(181, 211, 211);
   border-radius: 15px;
   background-color: white;
-}
 
+}
 .authorization__container h4 {
   padding: 0;
   margin-top: 0;
@@ -22,7 +22,11 @@
 
 .authorization__wrapper select {
   margin-bottom: 10px;
-  border: 1px solid black;
+  height: 30px;
+  border-radius: 3px;
+  appearance: cadetblue;
+  border: 1px solid rgb(41, 95, 97);
+
 }
 
 .login__submit {
