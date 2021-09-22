@@ -3,8 +3,8 @@
       <div v-if="isCurrentRoundFinished" style="max-width: 200px; color: red">
         <span> Данный раунд завершен</span>
       </div>
-      <p v-if="participantDataLoaded">Load</p>
-      <!-- <spinner v-if="participantDataLoaded"></spinner> -->
+<!--      <p v-if="participantDataLoaded">Load</p>-->
+      <spinner v-if="participantDataLoaded"></spinner>
       <div v-else>
         <div v-if="isJudgeFinished">
           <div class="voting__score">
@@ -68,12 +68,14 @@ export default {
   }),
   methods:{
      updateSummaryScore() {
+        this.$store.commit('VotingData/updateLoadingStatus', true)
         for (this.item in this.participants.game[0].table_id.participant_id) {
           this.$refs.row[this.item].updateFromPartEvalFields();
         }
         JudgeSerivce.finishParticipantScore(this.userData.id, this.participants.game[0].round_id.id).then(
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
         )
+        this.$router.go()
      },
      getRoundStatus() {
        if(this.participants.length !== 0) {
@@ -82,34 +84,6 @@ export default {
           this.scoreData = this.$store.getters['VotingData/getFinishedScore'](this.participants.game[0].judge_id, this.round)
        }
      },
-    //  getFinishedScore(dict) {
-    //    if (this.participants['game'].length > 0) {
-    //       if (dict[''.concat('round_', this.round, '_finished')] === true) {
-    //         let aggregatedData = []
-    //         let searchedData = this.participants['game'][0]['table_id']['participant_id'].slice()
-    //         searchedData.forEach(
-    //             value => {
-    //               aggregatedData.push({
-    //                  name: value.name,
-    //                  score: value.participant_score[0].client_centricity +
-    //                   value.participant_score[0].result_management  +
-    //                   value.participant_score[0].self_management
-    //               })
-    //             }
-    //         )
-    //         aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
-     
-    //         for (var i = 1; i <= aggregatedData.length; i++) {
-    //           aggregatedData[i - 1]['rating'] = i
-    //         }
-    
-    //         this.scoreData = aggregatedData
-    //         console.log(this.scoreData)
-    //         return this.scoreData
-    //       }
-    //    }
-    //    return false
-    //  },
   },
   watch: {
     participants: function () {
