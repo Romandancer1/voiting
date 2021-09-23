@@ -39,6 +39,7 @@ export const router = new Router({
             },
             {
              path: '/voting',
+             name: 'voting',
              component: VotingDashboard
             }
 
