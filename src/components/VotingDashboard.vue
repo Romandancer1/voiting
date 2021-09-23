@@ -54,13 +54,17 @@ export default {
       }
     },
     created() {
+
+      if (this.$route.query.roundID) {
+        this.round = this.$route.query.roundID
+      }
+      console.log(this.round)
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
-        this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id}).then(
-
-        )
+        this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
       }
+
     },
     computed: mapState({
       participantList: state => state.VotingData.participantList,
@@ -80,7 +84,7 @@ export default {
     watch: {
       userDataLoaded: function(newValue) {
         if (newValue === false) {
-          this.$store.dispatch('VotingData/getParticipants', {roundID: 1, judgeID: this.userData.id})
+          this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
         }
       },
       participantList: function () {
