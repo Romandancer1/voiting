@@ -2,9 +2,7 @@
   <div class="voting">
      <spinner v-if="participantDataLoaded && userDataLoaded"></spinner>
      <div class="voting__container" v-else>
-      <div class="navigation">
-        <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
-      </div>
+      
        <judge-avatar :participantAvatarPath="userData.portrait"></judge-avatar>
       <div class="voting__name">
            <span>Имя жюри: <strong>{{userData.name}}</strong></span>
@@ -16,7 +14,7 @@
       <div class="voting__table">
           <spinner v-if="participantDataLoaded"></spinner>
 <!--          <span v-else> Cтол №{{participantList.game[0].table_id.table_id}}</span>-->
-          <span v-else> Стол № {{tableID}}</span>
+          <span v-else> Команду № {{tableID}}</span>
       </div>
       <div class="round-select__wrapper">
           <button class="round-select__button" :class="{button__active:round == 1}" v-on:click="loadRound(1)">Раунд 1</button>
@@ -26,7 +24,11 @@
       <participant-table :round="round"
                          :participants=participantList>
       </participant-table>
+      <div class="navigation">
+        <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
       </div>
+      </div>
+      
     </div>
 </template>
 

@@ -23,16 +23,18 @@
               :roundID = "participants.game[0].round_id"
               ref="row"
             />
-          <div style="text-align: center" class="voting__finish">
-            <button class="round-select__button"
+          
+
+      </div>
+      
+      </div>
+      
+            <button class="round__end__button"
                     v-if="!isCurrentRoundFinished && !isJudgeFinished"
                     @click="updateSummaryScore()">
                     Завершить голосование
             </button>
-          </div>
-
-      </div>
-      </div>
+        
     </div>
 </template>
 

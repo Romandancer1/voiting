@@ -7,6 +7,7 @@
         <div class="authorization__wrapper">
           <label for="userEmail">Выберите пользователя</label>
           <select id="userEmail" v-model.lazy="$v.user.email.$model">
+            <!-- <option value='' disabled selected="sdsd" > Выберите пользователя</option> -->
             <option 
               v-for="item in emails" 
               :key="item.id"
@@ -17,6 +18,9 @@
           </select>
 
         </div>
+
+        <input class="login__input" type="password" placeholder="Пароль"
+          v-model="user_password">
         <button v-on:click="login" class="login__submit">
           <spinner class="login__submit-spinner"  v-if="loginStatus"></spinner>
           <span v-else>Войти</span>
@@ -47,22 +51,8 @@ export default {
   name: "Login",
   data() {
     return {
+      user_password: '',
       emails: [],
-        // {
-        //   id: 1,
-        //   name: 'mickeyeasy',
-        //   email: 'mickeyeasy@gmail.com'
-        // },
-        // {
-        //   id: 2,
-        //   name: 'Федоров П.Ф.',
-        //   email: 'fedor@gmail.com'
-        // },
-        // {
-        //   id: 3,
-        //   name: 'Иванов П.Ф.',
-        //   email: 'ivan@gmail.com'
-        // },
       user: new User('', '', '', '', ''),
       isLoginFailed: false,
       isLoginFailedData: null,
@@ -78,6 +68,7 @@ export default {
   mounted() {
        JudgeService.getFinished().then(response => {
          this.emails = response.judge
+        //  this.user_password = response.judge
        }
      )
   },
