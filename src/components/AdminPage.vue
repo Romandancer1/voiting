@@ -42,7 +42,7 @@
         </div>
 
         <div style="text-align: center;">
-          <button class="admin__download">
+          <button @click="loadExcel" class="admin__download">
             Выгрузить результаты в excel
         </button>
         </div>
@@ -52,6 +52,7 @@
 <script>
 import JudgeService from "@/service/judge.service"
 import AdminSerivce from "@/service/admin.service"
+import FileHandler from "@/service/excel.service"
 import {mapState} from "vuex";
 
 
@@ -89,6 +90,12 @@ name: "AdminPage",
                 this.updateRounds();
 
         })
+      },
+      loadExcel() {
+           FileHandler.downloadStat().then((response) => {
+                FileHandler.saveReceivedfile(response, "export_articles", ".xlsx");
+           })
+
       },
       updateRounds() {
          AdminSerivce.getAllRounds().then(response => {

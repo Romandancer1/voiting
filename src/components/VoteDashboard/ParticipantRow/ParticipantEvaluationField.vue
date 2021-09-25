@@ -7,7 +7,7 @@
                     :class="{ voting__select__active: this.user_selected_option.resultManagment!=0 }"
                     v-model="user_selected_option.resultManagment"
                     @change="updateScore">
-                        <option v-for="n in getNumbers(0, 5.5, 0.5)" :key="n" :value="n">{{ n }} </option>
+                        <option v-for="n in getNumbers()" :key="n" :value="n">{{ n }} </option>
                 </select>
             </div>
             <div class="voting__row-participant-score-item">
@@ -18,7 +18,7 @@
                     :disabled="roundID.is_finished"
                     v-model="user_selected_option.selfManagment"
                     @change="updateScore">
-                        <option v-for="n in getNumbers(0, 5.5, 0.5)" :key="n" :value="n">{{ n}} </option>
+                        <option v-for="n in getNumbers()" :key="n" :value="n">{{ n}} </option>
                 </select>
             </div>
             <div class="voting__row-participant-score-item">
@@ -28,7 +28,7 @@
                     :class="{ voting__select__active: this.user_selected_option.clientCentricity!=0 }"
                     v-model="user_selected_option.clientCentricity"
                     @change="updateScore">
-                        <option v-for="n in getNumbers(0, 5.5, 0.5)" :key="n" :value="n" >{{ n }} </option>
+                        <option v-for="n in getNumbers()" :key="n" :value="n" >{{ n }} </option>
                 </select>
             </div>
         </div>
@@ -51,7 +51,7 @@ export default {
         })
     },
     methods:{
-      getNumbers:function(start=0,stop=5,step=0.5){
+      getNumbers:function(start=0,stop=5.5,step=0.5){
         // return new Array(stop / step).fill(start).map((n,i)=>(i+1)*step);
         return [...Array(stop / step).fill(start).keys()].map(i => i*step  + start);
       },

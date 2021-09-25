@@ -32,7 +32,8 @@
             <button class="round__end__button"
                     v-if="!isCurrentRoundFinished && !isJudgeFinished"
                     @click="updateSummaryScore()">
-                    Завершить голосование
+                    <spinner class="round__finish" v-if="savingDataSpinner"></spinner>
+                    <span v-else>Завершить голосование</span>
             </button>
         
     </div>
@@ -58,7 +59,8 @@ export default {
           roundData: [],
           scoreData: [],
           isCurrentRoundFinished: false,
-          isJudgeFinished: false
+          isJudgeFinished: false,
+          savingDataSpinner: false
     }
   },
   mounted() {
@@ -70,13 +72,27 @@ export default {
   }),
   methods:{
      updateSummaryScore() {
-        this.$store.commit('VotingData/updateLoadingStatus', true)
+        this.savingDataSpinner = true
         for (this.item in this.participants.game[0].table_id.participant_id) {
           this.$refs.row[this.item].updateFromPartEvalFields();
         }
+        setTimeout(() => {this.reloadPage()}
+          , 3000)
+     },
+     reloadPage() {
         JudgeSerivce.finishParticipantScore(this.userData.id, this.participants.game[0].round_id.id).then(
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
         )
+        setTimeout(() => {this.finishScore()}
+          , 2000)
+
+     },
+     finishScore() {
+        this.savingDataSpinner = false
+        this.$router.push({
+          path: '/voting',
+          query: { roundID: this.round },
+        })
         this.$router.go()
      },
      getRoundStatus() {
