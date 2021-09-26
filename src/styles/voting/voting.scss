@@ -136,7 +136,8 @@
 
 
 .round__end__button{
-    margin: 10px 80px;
+    margin-top: -15px;
+    margin-bottom: 30px;
     padding: 17px;
     text-align: center;
     border-radius: 2px;
@@ -268,4 +269,19 @@ option{
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.voting__logout {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    color: white;
+    padding: 10px;
+    background-color: darkgreen;
+    border: none;
+}
+.voting__participant-judge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -26,12 +26,14 @@ export const auth = {
          * @param user
          * @returns {Promise<void>}
          */
-        login({commit}, user) {
+        login({commit}, query) {
             commit('loadingLoginStatus', true)
-            return AuthService.login(user).then(
+            return AuthService.login(query).then(
                 response => {
                     commit('loadingLoginStatus', false)
-                    if(typeof(response) === 'number') {
+
+                    if(response.status === 403) {
+                        console.log(response)
                         commit('loginFailure', response)
                     } else {
                         commit('loginSuccess', user)

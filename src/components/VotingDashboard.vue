@@ -1,5 +1,8 @@
 <template>
   <div class="voting">
+     <button class="voting__logout"
+             @click="logout()"
+     >Выйти</button>
      <spinner v-if="participantDataLoaded && userDataLoaded"></spinner>
      <div class="voting__container" v-else>
       
@@ -56,11 +59,9 @@ export default {
       }
     },
     created() {
-
       if (this.$route.query.roundID) {
         this.round = this.$route.query.roundID
       }
-      console.log(this.round)
       if(this.userData.name === null){
         this.$store.dispatch('UserData/loadUser')
       } else {
@@ -81,6 +82,10 @@ export default {
       },
       getActiveTable(){
           this.tableID = this.$store.getters['VotingData/getCurrentTableID']
+      },
+      logout() {
+        this.$store.dispatch('auth/logout');
+        this.$router.push('/login');
       }
     },
     watch: {

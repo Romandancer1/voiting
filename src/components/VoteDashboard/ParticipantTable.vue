@@ -15,7 +15,7 @@
 
           <participant-score-table :score-data="this.scoreData"></participant-score-table>
         </div>
-       <div v-else-if="participants.length !== 0">
+        <div v-else-if="participants.length !== 0" class="voting__participant-judge">
             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
               :key="item.id"
               :rowData="item"
@@ -24,18 +24,19 @@
               ref="row"
             />
           
-
-      </div>
-      
-      </div>
-      
             <button class="round__end__button"
                     v-if="!isCurrentRoundFinished && !isJudgeFinished"
                     @click="updateSummaryScore()">
                     <spinner class="round__finish" v-if="savingDataSpinner"></spinner>
                     <span v-else>Завершить голосование</span>
             </button>
-        
+        </div>
+
+
+      
+      </div>
+      
+
     </div>
 </template>
 

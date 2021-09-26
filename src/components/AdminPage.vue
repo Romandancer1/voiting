@@ -6,8 +6,7 @@
         >
         
           <span>Раунд {{item.id}}</span>
-          <button :disabled="item.is_finished"
-                  @click="finishRound(item.id)">
+          <button @click="finishRound(item.id)">
                   <span v-if="item.is_finished">Раунд завершен</span>
                   <span v-else>Завершить раунд</span>
           </button>

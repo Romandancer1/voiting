@@ -4,10 +4,11 @@ import authHeader from "@/service/auth-header";
 const API_URL = 'https://voting-app.newtechaudit.ru/api/authorize/';
 
 class AuthService {
-  async login(user) {
+  async login(query) {
     return await axios
-      .post(API_URL + 'judge/', {
-        email: user.email,
+      .post(API_URL + 'judge-login/', {
+        email: query.user.email,
+        validation_code: query.validationCode
       })
       .then(response => {
         if (response.data.judge) {
@@ -15,7 +16,7 @@ class AuthService {
         }
         return response;
       })
-      .catch(error => {
+      .catch((error) => {
           return error.response
        })
   }
@@ -32,7 +33,7 @@ class AuthService {
   }
 
   async logout() {
-    await localStorage.removeItem('user');
+    await localStorage.removeItem('voting_app_user');
   }
 
   async register(user) {
