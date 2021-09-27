@@ -1,12 +1,13 @@
 <template>
     <div>
+      
       <div v-if="isCurrentRoundFinished" style="max-width: 200px; color: red">
         <span> Данный раунд завершен</span>
       </div>
 <!--      <p v-if="participantDataLoaded">Load</p>-->
       <spinner v-if="participantDataLoaded"></spinner>
       <div v-else>
-        <div v-if="isJudgeFinished">
+        <!-- <div v-if="isJudgeFinished">
           <div class="voting__score">
             <p>Имя участника</p>
             <p class="voting__score--short">Баллы</p>
@@ -14,8 +15,10 @@
           </div>
 
           <participant-score-table :score-data="this.scoreData"></participant-score-table>
-        </div>
-        <div v-else-if="participants.length !== 0" class="voting__participant-judge">
+        </div> -->
+        <!-- <div v-else-if="participants.length !== 0" class="voting__participant-judge"> -->
+        <div v-if="participants.length !== 0" class="voting__participant-judge">
+          
             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
               :key="item.id"
               :rowData="item"
@@ -32,7 +35,7 @@
             </button>
         </div>
 
-
+<!-- <p>{{this.scoreData}}</p> -->
       
       </div>
       
@@ -44,7 +47,7 @@
 import ParticipantRow from '@/components/VoteDashboard/ParticipantRow';
 import {mapState} from "vuex";
 import JudgeSerivce from "@/service/judge.service";
-import ParticipantScoreTable from "./ParticipantScoreTable";
+// import ParticipantScoreTable from "./ParticipantScoreTable";
 import Spinner from 'vue-simple-spinner';
 
 export default {
@@ -52,7 +55,7 @@ export default {
   props:['participants', 'round'],
   components: {
       ParticipantRow,
-      ParticipantScoreTable,
+      // ParticipantScoreTable,
       Spinner
   },
    data() {

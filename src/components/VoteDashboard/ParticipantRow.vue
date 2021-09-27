@@ -3,18 +3,19 @@
 <div class="voting__row">
   <div class="voting__row-wrapper">
       <avatar-fields  
-        v-show="!roundID.is_finished" 
         :participantAvatarPath="rowData.portrait">
       </avatar-fields>
 
       <participant-info-field 
-        v-show="!roundID.is_finished" 
-        :item="rowData">
+        :item="rowData"
+        :roundID="roundID"
+        :judgeID="judgeID" 
+        >
       </participant-info-field>
   </div>
   <!-- v-show="!roundID.is_finished" -->
       <participant-evaluation-field 
-          v-show="!roundID.is_finished" 
+          
           :item="rowData" :judgeID="judgeID" 
           :roundID="roundID"
           ref="evaluation">

@@ -54,7 +54,8 @@ export const VotingData = {
         },
         getFinishedScore: (state) => (dict, roundID) => {
             if (state.participantList['game'].length > 0) {
-                if (dict[''.concat('round_', roundID, '_finished')] === true) {
+                console.log(roundID)
+                if (dict[''.concat('round_', roundID, '_finished')] != true) {
                   let aggregatedData = []
                   let searchedData = state.participantList['game'][0]['table_id']['participant_id'].slice()
                   searchedData.forEach(
