@@ -54,7 +54,7 @@ export const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/dashboard', '/notfound'];
+  const publicPages = ['/login', '/notfound'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('voting_app_user');
 

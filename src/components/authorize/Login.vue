@@ -19,19 +19,21 @@
 
         </div>
 
-        <input class="login__input" type="password" placeholder="Пароль"
-          v-model="user_password">
-        <button v-on:click="login" class="login__submit">
-          <spinner class="login__submit-spinner"  v-if="loginStatus"></spinner>
-          <span v-else>Войти</span>
-        </button>
-<!--        </button>-->
-        <div class="login__failed-wrapper">
+        <input class="login__input" type="number" placeholder="Код подтверждения"
+          v-model="validation_code">
+
+         <div class="login__failed-wrapper">
             <p class="authorization__input--error-message"
                 v-if="isLoginFailed">
               {{isLoginFailedData}}
             </p>
         </div>
+        <button v-on:click="login" class="login__submit">
+          <spinner class="login__submit-spinner"  v-if="loginStatus"></spinner>
+          <span v-else>Войти</span>
+        </button>
+<!--        </button>-->
+
         
 
       </form>
@@ -51,7 +53,7 @@ export default {
   name: "Login",
   data() {
     return {
-      user_password: '',
+      validation_code: '',
       emails: [],
       user: new User('', '', '', '', ''),
       isLoginFailed: false,
@@ -68,7 +70,6 @@ export default {
   mounted() {
        JudgeService.getFinished().then(response => {
          this.emails = response.judge
-        //  this.user_password = response.judge
        }
      )
   },
@@ -86,30 +87,28 @@ export default {
     user: {
       email: {
         required, email,
-        getEmail(value){
-          return value
-
+          getEmail(value){
+            return value
         }
       }
     }
   },
   methods: {
-     
     login(){
       this.$v.$touch();
       if (!this.$v.$invalid) {
-         this.$store.dispatch('auth/login', this.user)
+         this.$store.dispatch('auth/login', {
+           user: this.user,
+           validationCode: parseInt(this.validation_code)
+         })
           .then(() => {
               if (this.isLoggedIn) {
                 this.$store.dispatch('UserData/loadUser')
                 this.$router.push('/voting');
               } else {
                 this.isLoginFailed = true;
-                if(this.loginFailureStatus === 401) {
-                    this.isLoginFailedData = 'Вы ввели неверный логин или пароль'
-                } else if (this.loginFailureStatus === 403) {
-                    this.isLoginFailedData = 'Данный пользователь не подтвержден, проверьте почту указанную при регистрации или зарегистрируйтесь еще раз'
-                }
+                this.isLoginFailedData = 'Неверный код подтверждения'
+
               }
           })
       }

@@ -12,7 +12,7 @@ export default class Participant {
         try {
             return item.participant_score[0].result_management
         } catch {
-            return 1
+            return 0
         }
     }
 
@@ -20,7 +20,7 @@ export default class Participant {
         try {
             return item.participant_score[0].self_management
         } catch {
-            return 1
+            return 0
         }
 
     }
@@ -29,7 +29,7 @@ export default class Participant {
         try {
             return item.participant_score[0].client_centricity
         } catch {
-            return 1
+            return 0
         }
     }
 
