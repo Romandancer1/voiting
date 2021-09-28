@@ -77,9 +77,9 @@ export default {
         })
     },
     methods:{
-      getNumbers:function(start=0,stop=5.5,step=0.5){
-        // return new Array(stop / step).fill(start).map((n,i)=>(i+1)*step);
-        return [...Array(stop / step).fill(start).keys()].map(i => i*step  + start);
+      getNumbers:function(start=0,stop=3,step=1){
+        return new Array(stop / step).fill(start).map((n,i)=>(i)*step);
+        //return [...Array(stop / step).fill(start).keys()].map(i => i*step  + start);
       },
       updateScore() {
         VotingService.saveParticipantScore({

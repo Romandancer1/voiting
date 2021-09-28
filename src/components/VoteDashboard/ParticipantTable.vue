@@ -6,7 +6,7 @@
      <p v-if="participantDataLoaded">Load</p>
       <spinner v-if="participantDataLoaded"></spinner>
       <div v-else>
-        <div v-if="isJudgeFinished">
+<!--        <div v-if="isJudgeFinished">-->
           <!-- <div class="voting__score">
             <p>Имя участника</p>
             <p class="voting__score--short">Баллы</p>
@@ -14,9 +14,9 @@
           </div> -->
 
           <!-- <participant-score-table :score-data="this.scoreData"></participant-score-table> -->
-        </div>
+<!--        </div>-->
         <!-- <div v-else-if="participants.length !== 0" class="voting__participant-judge"> -->
-        <div v-else-if="participants.length !== 0" class="voting__participant-judge">
+        <div v-if="participants.length !== 0" class="voting__participant-judge">
           
             <ParticipantRow v-for="item in participants.game[0].table_id.participant_id"
               :key="item.id"
