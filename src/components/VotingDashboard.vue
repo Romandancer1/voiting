@@ -9,10 +9,10 @@
       
        <judge-avatar :participantAvatarPath="userData.portrait"></judge-avatar>
       <div class="voting__name">
-           <span>Имя жюри: <strong>{{userData.name}}</strong></span>
+           <span>Жюри: <strong>{{userData.name}}</strong></span>
       </div>
       <div style="padding-bottom: 10px">
-        <span >Вы оцениваете</span>
+        <span >Оценивает</span>
       </div>
           
       <div class="voting__table">

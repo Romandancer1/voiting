@@ -1,10 +1,9 @@
 <template>
     <div>
-      
-      <div v-if="isCurrentRoundFinished" style="max-width: 200px; color: red">
-        <span> Данный раунд завершен</span>
+      <div v-if="isCurrentRoundFinished" style="max-width: auto; color: red; margin-bottom: 20px; text-aling:center;">
+        <span style="padding-left:26%" v-show="!participantDataLoaded">Данный раунд завершен</span>
       </div>
-<!--      <p v-if="participantDataLoaded">Load</p>-->
+     <p v-if="participantDataLoaded">Load</p>
       <spinner v-if="participantDataLoaded"></spinner>
       <div v-else>
         <!-- <div v-if="isJudgeFinished">
