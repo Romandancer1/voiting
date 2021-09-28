@@ -68,6 +68,9 @@ export default {
     components:{
         ModalTemplate
     },
+    // beforeMount(){
+    //     this.updateScore();
+    // },
      computed: {
       ...mapState ({
           userData: state => state.UserData.user,

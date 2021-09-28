@@ -53,19 +53,34 @@ export const VotingData = {
             return state.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]
         },
         getFinishedScore: (state) => (dict, roundID) => {
+            // console.log(dict)
             if (state.participantList['game'].length > 0) {
-                console.log(roundID)
+                // console.log(roundID)
                 if (dict[''.concat('round_', roundID, '_finished')] != true) {
                   let aggregatedData = []
                   let searchedData = state.participantList['game'][0]['table_id']['participant_id'].slice()
+
                   searchedData.forEach(
                       value => {
-                        aggregatedData.push({
-                           name: value.name,
-                           score: value.participant_score[0].client_centricity +
-                            value.participant_score[0].result_management  +
-                            value.participant_score[0].self_management
-                        })
+                        try {
+                            
+                            aggregatedData.push({
+                                name: value.name ,
+                                score:  value.participant_score[0].client_centricity  +
+                                 value.participant_score[0].result_management  +
+                                 value.participant_score[0].self_management 
+                            }) 
+                        } 
+                        catch (e){
+                            aggregatedData.push({
+                                name: value.name,
+                                score: 0 
+                            })
+                        }
+                   
+                            
+                        // })
+                        // console.log(value.name,value.participant_score[0].client_centricity)
                       }
                   )
                   aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)

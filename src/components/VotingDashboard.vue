@@ -1,6 +1,6 @@
 <template>
   <div class="voting">
-    <p>{{this.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]}}</p>
+    <!-- <p>{{this.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]}}</p> -->
      <button class="voting__logout"
              @click="logout()"
      >Выйти</button>
