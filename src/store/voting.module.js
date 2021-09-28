@@ -83,10 +83,29 @@ export const VotingData = {
                         // console.log(value.name,value.participant_score[0].client_centricity)
                       }
                   )
-                  aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
-                  for (var i = 1; i <= aggregatedData.length; i++) {
-                    aggregatedData[i - 1]['rating'] = i
+                //   aggregatedData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+                //   for (var i = 1; i <= aggregatedData.length; i++) {
+                //     if (aggregatedData[i - 1]['score']==0){
+                //         aggregatedData[i - 1]['rating'] = 1  
+                //     }
+                //     else{
+                //         aggregatedData[i - 1]['rating'] = i
+                //         console.log(aggregatedData[i])
+                //     }
+                    
+                //   }
+                  aggregatedData.sort(function(a, b){
+                    return b.score - a.score;
+                });
+                
+                var rating = 1;
+                for (var i = 0; i < aggregatedData.length; i++) {
+                  if (i > 0 && aggregatedData[i]['score'] < aggregatedData[i - 1]['score']) {
+                    rating++;
                   }
+                  aggregatedData[i]['rating'] = rating;
+                }  
+                    
                   return aggregatedData
                 }
              }
