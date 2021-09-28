@@ -69,11 +69,13 @@
 .voting__row {
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin-bottom: 30px;
     padding-bottom: 30px;
 }
 .voting__row-wrapper {
     display: flex;
+
 }
 
 .voting__row-participant-info {
@@ -99,8 +101,8 @@
 
 }
 .round__finish {
-    width: 15px ;
-    height: 15px ;
+    width: 35px ;
+    height: 35px ;
 }
 
 .round__finish .vue-simple-spinner {
@@ -137,8 +139,7 @@
 
 .round__end__button{
     margin-top: -15px;
-    margin-bottom: 30px;
-    padding: 17px;
+    padding: 18px;
     text-align: center;
     border-radius: 2px;
     background-color: green;
@@ -218,10 +219,13 @@ background-position: left .7em top 50%, 0 0;
 padding: .6em .8em .5em 1.4em;
 
 }
+.participant__image{
+    display: flex;
+}
 .image_participant{
     margin-right: 20px;
     height: 100px;
-    width: auto;
+    width: 100px;
     border-radius: 100px;
     
 }
@@ -256,8 +260,14 @@ option{
 }
 
 .voting__score--short {
-    max-width: 30px;
-    width: 30px;
+    // flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    // flex-grow: 4;
+    // flex-direction: row;
+    // flex-direction: row;
+    margin-top: 3px;
+    width: 100%;
 }
 .voting__score p {
     margin-bottom: 10px;
@@ -275,9 +285,10 @@ option{
     position: absolute;
     right: 30px;
     top: 20px;
+    background-color: green;
+    border-radius: 2px;
     color: white;
     padding: 10px;
-    background-color: darkgreen;
     border: none;
 }
 .voting__participant-judge {
@@ -285,3 +296,9 @@ option{
     flex-direction: column;
     align-items: center;
 }
+.voting__row-participant-info{
+    display: flex;
+    width: 100%;
+    // width: auto;
+}
+

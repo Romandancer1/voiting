@@ -1,5 +1,6 @@
 <template>
   <div class="voting">
+    <p>{{this.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]}}</p>
      <button class="voting__logout"
              @click="logout()"
      >Выйти</button>
@@ -8,10 +9,10 @@
       
        <judge-avatar :participantAvatarPath="userData.portrait"></judge-avatar>
       <div class="voting__name">
-           <span>Имя жюри: <strong>{{userData.name}}</strong></span>
+           <span>Жюри: <strong>{{userData.name}}</strong></span>
       </div>
       <div style="padding-bottom: 10px">
-        <span >Вы оцениваете</span>
+        <span >Оценивает</span>
       </div>
           
       <div class="voting__table">
@@ -27,8 +28,14 @@
       <participant-table :round="round"
                          :participants=participantList>
       </participant-table>
-      <div class="navigation">
-        <router-link class="navigation__link" to="/dashboard">Общий рейтинг</router-link>
+      <!-- <p>{{}}</p> -->
+      <!-- ERROR 0 lenght -->
+      <!-- <p>{{userDataLoaded}}</p> -->
+      <div class="navigation" >
+        <router-link class="navigation__link" to="/dashboard"
+        v-show="round==3&&participantList.game[0].judge_id.round_3_finished"
+        >
+        Общий рейтинг</router-link>
       </div>
       </div>
       
@@ -54,7 +61,7 @@ export default {
     data() {
         return {
             round: 1,
-            roundData:[],
+            roundID:[],
             tableID: null
       }
     },
