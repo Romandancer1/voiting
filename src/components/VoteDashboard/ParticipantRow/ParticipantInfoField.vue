@@ -13,8 +13,8 @@
             <!-- <p v-if="i.name==item.name" class="voting__score--short" >Общий счёт: {{i.score}} Ранг: {{i.rating}}</p> -->
             <div v-if="i.name==item.name" class="voting__score--short" >
 
-                 <p v-if="i.score!=null"><strong>Общий счёт: {{i.score}}</strong> </p>  
-                 <p><strong>Ранг: {{i.rating}}</strong> </p>  
+                 <p v-if="i.score!=null" style="font-size: 14px"><strong>Общий счёт этапа: {{i.score}}</strong> </p>
+                 <p style="font-size: 14px"><strong>Ранг этапа: {{i.rating}}</strong> </p>
             </div>
             
             <!-- <p v-if="i.name==item.name" class="voting__score--short">Ранг {{i.rating}}</p> -->
@@ -68,7 +68,6 @@ export default {
       getRoundStatus() {
        if(this.participantList.length !== 0 && !this.participantDataLoaded ) {
           this.scoreData = this.$store.getters['VotingData/getFinishedScore'](this.judgeID.id, this.roundID.id)
-          // console.log(this.scoreData)
 
        }
      },
