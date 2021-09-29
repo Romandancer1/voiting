@@ -1,7 +1,37 @@
+
+.rating__scale{
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 16px
+}
+.rating__scale--table button{
+    margin-left: 5px;
+
+}
+.rating__scale--table{
+    display: flex;
+    max-width: 400px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0.3710434857536765) 0%,
+     rgba(89,218,63,0.634348807882528) 65%, rgba(35,185,74,1) 100%);
+     font-size: 18px
+}
+.rating__scale--table div{
+    padding: 5px 45px;
+    border: 1px solid black;
+}
 .round-select__wrapper {
     display: flex;
-    max-width: 300px;
     justify-content: center;
+    max-width: 300px;
+    padding-left: 10px;
+    margin-right: 0px;
+    margin-bottom: 18px;
+   
+    
 }
 
 .container {
@@ -36,9 +66,7 @@
     padding-right: 15px;
 }
 
-.voting__content {
 
-}
 .voting__name {
     margin-bottom: 10px;
 }
@@ -46,7 +74,7 @@
     padding: 8px;
     position: relative;
     justify-content: center;
-    margin-right: 10px;
+    // margin-right: 10px;
     margin-bottom: 10px;
     text-align: center;
     color: white;
@@ -54,10 +82,9 @@
     background-color: green;
 }
 
-.round-select__wrapper {
-    margin-right: 0px;
-    margin-bottom: 30px;
-}
+// .round-select__wrapper {
+    
+// }
 
 .round-select__button{
     max-height: 50px;
@@ -152,14 +179,15 @@
 
 }
 .navigation {
-    
     margin-top: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    
+    // padding-right: 16px;
 }
 .navigation__link {
     // margin-bottom: 310px;
-    padding: 10px 40px;
-    background-color: lightblue;
+    padding: 10px;
+    background-color: orange;
     border-radius: 2px;
     color: rgb(37, 36, 36);
     text-decoration: none;
@@ -223,14 +251,14 @@ padding: .6em .8em .5em 1.4em;
     display: flex;
 }
 .image_participant{
-    margin-right: 20px;
+    margin-right: 20px;  
     height: 100px;
     width: 100px;
     border-radius: 100px;
     
 }
 .image_judge{
-    margin-right: 20px;
+    // margin-right: 20px;
     height: 100px;
     width: auto;
     border-radius: 100px;

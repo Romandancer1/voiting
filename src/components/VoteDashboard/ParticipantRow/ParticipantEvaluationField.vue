@@ -5,7 +5,9 @@
                 <button id="show-modal" class="button__modal" @click="showModalresultManagment = true">?</button>
                 <modal-template v-if="showModalresultManagment" @close="showModalresultManagment = false">
                         <h3 slot="header">Управление результатом/ответственность </h3>
-                        <!-- <p slot="body">TEXT</p> -->
+                        <p slot="body">Стремится к выдающимся результатам, 
+                            четко планирует и приоритизирует, принимает ответственность, 
+                            достигает целей, повышает планку</p>
                 </modal-template>
                  <select class="voting__select" 
                     :disabled="roundID.is_finished||judgeID[''.concat('round_', roundID.id , '_finished')]"
@@ -20,7 +22,10 @@
                 <button id="show-modal" class="button__modal" @click="showModalselfManagment = true">?</button>
                 <modal-template v-if="showModalselfManagment" @close="showModalselfManagment = false">
                         <h3 slot="header">Управление собой </h3>
-                        <!-- <p slot="body">TEXT </p> -->
+                        <p slot="body">Обладает эмоциональным интеллектом,
+                             ведет конструктивный диалог, управляет стрессом,
+                              постоянно развивается, проявляет жизнестойкость
+                        </p>
                 </modal-template>
                 <!-- :disabled="roundID.is_finished" -->
                 <select  class="voting__select"
@@ -36,7 +41,10 @@
                 <button id="show-modal" class="button__modal" @click="showModalclientCentricity = true">?</button>
                 <modal-template v-if="showModalclientCentricity" @close="showModalclientCentricity = false">
                         <h3 slot="header">Клиентоцентричность</h3>
-                        <!-- <p slot="body">TEXT </p> -->
+                        <p slot="body">Определяет потребности клиентов,
+                             регулярно собирает обратную связь,
+                            строит долгосрочные партнёрские отношения.
+                        </p>
                 </modal-template>
                 <select  class="voting__select" 
                     :disabled="roundID.is_finished||judgeID[''.concat('round_', roundID.id , '_finished')]"

@@ -1,11 +1,18 @@
 <template>
   <div class="voting">
-    <!-- <p>{{this.participantList['game'][0]['judge_id'][''.concat('round_', roundID , '_finished')]}}</p> -->
+    
      <button class="voting__logout"
              @click="logout()"
      >Выйти</button>
      <spinner v-if="participantDataLoaded && userDataLoaded"></spinner>
      <div class="voting__container" v-else>
+       <div class="navigation" >
+        <router-link class="navigation__link" to="/dashboard"
+          v-show="round==3&&participantList.game[0].judge_id.round_3_finished"
+        >
+         Общий рейтинг
+        </router-link>
+    </div>
       
        <judge-avatar :participantAvatarPath="userData.portrait"></judge-avatar>
       <div class="voting__name">
@@ -25,18 +32,25 @@
           <button class="round-select__button" :class="{button__active:round == 2}" v-on:click="loadRound(2)">Раунд 2</button>
           <button class="round-select__button" :class="{button__active:round == 3}" v-on:click="loadRound(3)">Раунд 3</button>
       </div>
+      <div class="rating__scale">
+        <span>Шкала оценки </span>
+        <button  class="button__modal" @click="showModalTemplate = true">?</button>
+        <div class="rating__scale--table">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </div>
+      </div>
+      
+      <modal-template v-if="showModalTemplate" @close="showModalTemplate = false">
+                </modal-template>
       <participant-table :round="round"
                          :participants=participantList>
       </participant-table>
       <!-- <p>{{}}</p> -->
       <!-- ERROR 0 lenght -->
       <!-- <p>{{userDataLoaded}}</p> -->
-      <div class="navigation" >
-        <router-link class="navigation__link" to="/dashboard"
-        v-show="round==3&&participantList.game[0].judge_id.round_3_finished"
-        >
-        Общий рейтинг</router-link>
-      </div>
+      
       </div>
       
     </div>
@@ -48,18 +62,20 @@ import Spinner from 'vue-simple-spinner';
 import ParticipantTable from "@/components/VoteDashboard/ParticipantTable";
 import JudgeAvatar from "@/components/VoteDashboard/JudgeAvatar";
 import {mapState} from "vuex";
-
+import ModalTemplate from './VoteDashboard/ParticipantRow/ModalTemplate.vue';
 export default {
     components: {
         Spinner,
         ParticipantTable,
-        JudgeAvatar
+        JudgeAvatar,
+        ModalTemplate
     },
     beforeCreate() {
         document.body.className = 'voting';
     },
     data() {
         return {
+            showModalTemplate: false,
             round: 1,
             roundID:[],
             tableID: null
