@@ -36,9 +36,9 @@
         <span>Шкала оценки </span>
         <button  class="button__modal" @click="showModalTemplate = true">?</button>
         <div class="rating__scale--table">
+          <div>0</div>
           <div>1</div>
           <div>2</div>
-          <div>3</div>
         </div>
       </div>
       
