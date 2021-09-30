@@ -1,6 +1,6 @@
 <template>
         <div class="voting__row-participant-score">
-            <div class="voting__row-participant-score-item">
+            <div class="voting__row-participant-score-item" :class="{showRating:roundID.id==2}">
                 Управление результатом/ответственность 
                 <button id="show-modal" class="button__modal" @click="showModalresultManagment = true">?</button>
                 <modal-template v-if="showModalresultManagment" @close="showModalresultManagment = false">
@@ -36,7 +36,8 @@
                         <option v-for="n in getNumbers()" :key="n" :value="n">{{ n}} </option>
                 </select>
             </div>
-            <div class="voting__row-participant-score-item">
+            <div class="voting__row-participant-score-item" :class="{showRating:roundID.id==1}">
+                
                 Клиентоцентричность
                 <button id="show-modal" class="button__modal" @click="showModalclientCentricity = true">?</button>
                 <modal-template v-if="showModalclientCentricity" @close="showModalclientCentricity = false">

@@ -33,9 +33,18 @@
                     <span v-else>Завершить голосование</span>
             </button>
         </div>
-
-<!-- <p>{{this.scoreData}}</p> -->
-      
+        <!-- {{participants.game[0].judge_id.is_feedback_sent}} -->
+  <div v-if="participants.lenght > 0" >
+      <modal-template-poll 
+        :email="this.participants.game[0].judge_id.email"
+        :round="this.round"
+        :id="this.participants.game[0].judge_id.id"
+        :participants="this.participants"
+        v-if="participants.game[0].judge_id.round_3_finished && !participants.game[0].judge_id.is_feedback_sent" 
+        @close="participants.game[0].judge_id.is_feedback_sent == true"
+      >
+      </modal-template-poll>
+  </div>
       </div>
       
 
@@ -48,6 +57,7 @@ import {mapState} from "vuex";
 import JudgeSerivce from "@/service/judge.service";
 // import ParticipantScoreTable from "./ParticipantScoreTable";
 import Spinner from 'vue-simple-spinner';
+import ModalTemplatePoll from './ParticipantRow/ModalTemplatePoll.vue';
 
 export default {
   name: "ParticipantTable",
@@ -55,10 +65,13 @@ export default {
   components: {
       ParticipantRow,
       // ParticipantScoreTable,
-      Spinner
+      Spinner,
+      ModalTemplatePoll
   },
    data() {
       return {
+          // pollData:[],
+          showModalTemplate: false,
           roundData: [],
           scoreData: [],
           isCurrentRoundFinished: false,
@@ -90,6 +103,7 @@ export default {
           , 2000)
 
      },
+
      finishScore() {
         this.savingDataSpinner = false
         this.$router.push({
