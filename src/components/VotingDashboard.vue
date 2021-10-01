@@ -8,8 +8,9 @@
      <div class="voting__container" v-else>
        <div class="navigation" >
         <router-link class="navigation__link" to="/dashboard"
-          v-show="round==3&&participantList.game[0].judge_id.round_3_finished"
+         
         >
+         <!-- v-show="round==3&&participantList.game[0].judge_id.round_3_finished" -->
          Общий рейтинг
         </router-link>
     </div>
