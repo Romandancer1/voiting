@@ -12,7 +12,6 @@
             <p class="voting__score--short">Баллы</p>
             <p class="voting__score--short">Ранг</p>
           </div> -->
-
           <!-- <participant-score-table :score-data="this.scoreData"></participant-score-table> -->
 <!--        </div>-->
         <!-- <div v-else-if="participants.length !== 0" class="voting__participant-judge"> -->
@@ -42,7 +41,7 @@
         :id="this.participants.game[0].judge_id.id"
         :participants="this.participants"
         
-        v-if="participants.game[0].judge_id.round_3_finished && !participants.game[0].judge_id.is_feedback_sent" 
+        v-if="participants.game[0].judge_id.round_3_finished && !participants.game[0].judge_id.is_feedback_sent && !isUpdateApp" 
         @close="participants.game[0].judge_id.is_feedback_sent == true"
       >
       </modal-template-poll>
@@ -78,7 +77,8 @@ export default {
           scoreData: [],
           isCurrentRoundFinished: false,
           isJudgeFinished: false,
-          savingDataSpinner: false
+          savingDataSpinner: false,
+          isUpdateApp: false,
     }
   },
   mounted() {
@@ -91,6 +91,7 @@ export default {
   methods:{
      updateSummaryScore() {
         this.savingDataSpinner = true
+
         for (this.item in this.participants.game[0].table_id.participant_id) {
           this.$refs.row[this.item].updateFromPartEvalFields();
         }
@@ -101,11 +102,10 @@ export default {
         JudgeSerivce.finishParticipantScore(this.userData.id, this.participants.game[0].round_id.id).then(
             this.$store.dispatch('VotingData/getParticipants', {roundID: this.round, judgeID: this.userData.id})
         )
+        this.isUpdateApp=true;
         setTimeout(() => {this.finishScore()}
           , 2000)
-
      },
-
      finishScore() {
         this.savingDataSpinner = false
         this.$router.push({

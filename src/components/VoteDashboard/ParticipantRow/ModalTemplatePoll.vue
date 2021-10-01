@@ -17,8 +17,15 @@
                   <h3>Что можно улучшить?</h3>
                   <input class="template__input" type="text" v-model="fb_text">
                 </slot>
-                <button  class="modal-default-button-poll" @click="$emit('close'),getFeedBackPoll()">
-                    Отправить
+                <p v-if="flag" style="color:red; padding-top:20px;"> Вы заполнили не все поля!</p>
+                <!-- :disabled="fb_text==''&&is_ok==''" -->
+                <button  class="modal-default-button-poll" 
+                  
+                  
+                  @click="$emit('close'),getFeedBackPoll()"
+                  >
+                  <spinner class="round__finish" v-if="savingDataSpinner"></spinner>
+                  <span v-else>Отправить</span>
                   </button>
               </div>
             </div>
@@ -28,6 +35,7 @@
 </template>
 <script>
 
+import Spinner from 'vue-simple-spinner';
 import JudgeSerivce from "@/service/judge.service";
 export default{
   props:['email', 'round', 'id', 'participants' ],
@@ -35,14 +43,38 @@ export default{
       return {
           is_ok: '',
           fb_text:'',
+          savingDataSpinner: false,
+          flag: false,
     }
   },
     methods:{
       getFeedBackPoll( ){
-       JudgeSerivce.getFeedback(this.email, this.is_ok, this.fb_text).then(
-            this.$store.dispatch('VotingData/getParticipants',  {roundID: this.round, judgeID: this.id})
-        )
-    }
+        if (this.fb_text != '' &&  this.is_ok!=''){
+          this.savingDataSpinner = true;
+          JudgeSerivce.getFeedback(this.email, this.is_ok, this.fb_text).then(
+                this.$store.dispatch('VotingData/getParticipants',  {roundID: this.round, judgeID: this.id})
+            );
+            setTimeout(() => {this.reloadPage()}
+          , 2000)
+            console.log( JudgeSerivce.getFeedback(this.email, this.is_ok, this.fb_text).then(
+                this.$store.dispatch('VotingData/getParticipants',  {roundID: this.round, judgeID: this.id})
+            ));
+            // setTimeout(this.reloadPage(),5000);
+            // this.$router.go();
+        } else{
+          this.flag=true;
+
+        }
+        // if(!this.flsg){
+        // this.$router.go()}
+          
+    },
+    reloadPage() {
+        this.$router.go()
+     },
+  },
+  components:{
+    Spinner
   }
 }
 </script>
