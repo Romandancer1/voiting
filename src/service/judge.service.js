@@ -16,6 +16,17 @@ class JudgeService {
         })
     }
 
+    async sendJudgeFeedback(email, is_ok, feedback_text) {
+        return axios.post(API_URL + 'send-feedback/',{
+            feedback: {
+                email: email,
+                is_ok: is_ok,
+                feedback_text: feedback_text
+            }
+
+        })
+   }
+
 }
 
 export default new JudgeService();
